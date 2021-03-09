@@ -11,8 +11,9 @@
     border-radius: 2px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
     .button_type_submit {
         margin: 45px 0 0;
+        min-height: 46px;
     }
 }
