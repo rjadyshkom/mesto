@@ -5,3 +5,12 @@
     justify-content: space-between;
     align-items: center;
 }
+
+@media screen and (max-width: 768px) {
+    .profile {
+        padding: 42px 0 0;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+    }
+}

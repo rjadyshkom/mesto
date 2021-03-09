@@ -1,6 +1,7 @@
-.profile__button {
+.button {
     margin: 0 0 0 18px;
     padding: 0;
+    flex-shrink: 0;
     box-sizing: border-box;
     border-radius: 0;
     border-color: transparent;
@@ -19,10 +20,16 @@
     cursor: pointer;
 }
 
-.profile__button:hover {
+.button:hover {
     opacity: .7;
 }
 
-.profile__button:active {
+.button:active {
     transform: scale(.95);
+}
+
+@media screen and (max-width: 768px) {
+    .button {
+        margin: 0 0 0 10px;
+    }
 }
