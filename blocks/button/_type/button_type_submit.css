@@ -10,3 +10,9 @@
     font-weight: 400;
     border-radius: 2px;
 }
+
+@media screen and (max-width: 600px) {
+    .button_type_submit {
+        margin: 45px 0 0;
+    }
+}

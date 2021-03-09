@@ -5,3 +5,9 @@
     flex-direction: column;
     justify-items: center;
 }
+
+@media screen and (max-width: 600px) {
+    .popup__form {
+        margin: 45px 0 0;
+    }
+}

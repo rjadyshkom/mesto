@@ -8,3 +8,12 @@
     right: -48px;
     margin: 0;
 }
+
+@media screen and (max-width: 600px) {
+    .button_type_close {
+        right: 0;
+        width: 26px;
+        height: 26px;
+        background-size: 26px 26px;
+    }
+}

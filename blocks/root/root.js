@@ -1,17 +1,17 @@
-let editButton = document.querySelector('.button_type_edit');
-let popup = document.querySelector('.popup');
-let profileName = document.querySelector('.profile__name').innerText;
-let profileAbout = document.querySelector('.profile__about').innerText;
-let popupName = document.querySelector('.popup_name');
-let popupAbout = document.querySelector('.popup_about');
+const editButton = document.querySelector('.button_type_edit');
+const popup = document.querySelector('.popup');
+const profileName = document.querySelector('.profile__name');
+const profileAbout = document.querySelector('.profile__about');
+const popupName = document.querySelector('.popup_name');
+const popupAbout = document.querySelector('.popup_about');
+const formElement = popup.querySelector('.popup__form');
+const closeButton = document.querySelector('.button_type_close');
 
 function openPopup() {
     popup.classList.add('popup_opened');
-    popupName.value = profileName;
-    popupAbout.value = profileAbout;
+    popupName.value = profileName.innerText;
+    popupAbout.value = profileAbout.innerText;
 }
-
-let closeButton = document.querySelector('.button_type_close');
 
 function closePopup() {
     popup.classList.remove('popup_opened');
@@ -19,21 +19,13 @@ function closePopup() {
     popupAbout.value = '';
 }
 
-editButton.addEventListener('click', openPopup);
-closeButton.addEventListener('click', closePopup);
-
-
-let formElement = popup.querySelector('.popup__form');
-
 function formSubmitHandler(evt) {
     evt.preventDefault();
-    let nameInput = popup.querySelector('.popup_name').value;
-    let jobInput = popup.querySelector('.popup_about').value;
-    let profileName = document.querySelector('.profile__name');
-    let profileAbout = document.querySelector('.profile__about');
-    profileName.textContent = nameInput;
-    profileAbout.textContent = jobInput;
-    popup.classList.remove('popup_opened');
+    profileName.textContent = popupName.value;
+    profileAbout.textContent = popupAbout.value;
+    closePopup();
 }
 
+editButton.addEventListener('click', openPopup);
+closeButton.addEventListener('click', closePopup);
 formElement.addEventListener('submit', formSubmitHandler);
