@@ -1,0 +1,6 @@
+.profile__button_type_like {
+    width: 24px;
+    height: 19px;
+    background-image: url(../../../../images/elements-like-button.svg);
+    background-size: 24px 19px;
+}
