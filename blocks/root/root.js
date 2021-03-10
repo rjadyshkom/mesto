@@ -8,13 +8,13 @@ let formElement = popup.querySelector('.popup__form');
 let closeButton = document.querySelector('.button_type_close');
 
 function openPopup() {
-    popup.classList.add('popup_type_opened');
+    popup.classList.add('popup_opened');
     popupName.value = profileName.textContent;
     popupAbout.value = profileAbout.textContent;
 }
 
 function closePopup() {
-    popup.classList.remove('popup_type_opened');
+    popup.classList.remove('popup_opened');
     popupName.value = '';
     popupAbout.value = '';
 }
