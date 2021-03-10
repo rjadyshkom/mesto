@@ -6,6 +6,10 @@
     justify-self: end;
 }
 
+.button_type_like:hover {
+    opacity: .5;
+}
+
 .button_type_like:active {
     background-image: url(../../../images/elements-like-button-active.svg);
     opacity: 1;

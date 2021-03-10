@@ -1,23 +1,4 @@
 .elements {
-    margin: 0;
-    list-style: none;
     padding: 51px 0 0;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px 17px;
-    width: 100%;
-}
-
-@media screen and (max-width: 1024px) {
-    .elements {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-}
-
-@media screen and (max-width: 550px) {
-    .elements {
-        grid-template-columns: repeat(1, 1fr);
-        gap: 20px;
-    }
+    margin: 0;
 }

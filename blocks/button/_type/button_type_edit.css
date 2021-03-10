@@ -6,16 +6,14 @@
     background-size: 10px 10px;
 }
 
+.button_type_edit:hover {
+    opacity: .6;
+}
+
 @media screen and (max-width: 768px) {
     .button_type_edit {
         width: 18px;
         height: 18px;
         background-size: 7.5px 7.5px;
-    }
-}
-
-@media screen and (max-width: 380px) {
-    .button_type_edit {
-        margin: 0 0 0 -18px;
     }
 }

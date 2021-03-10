@@ -9,86 +9,92 @@
     <title>Mesto</title>
 </head>
 <body class="root">
-<div class="root__container">
-    <header class="header">
-        <img src="./images/header-logo.svg" alt="Логотип проекта Mesto" class="header__logo">
-    </header>
+    <div class="root__container">
+        <header class="header">
+            <img src="./images/header-logo.svg" alt="Логотип проекта Mesto" class="header__logo">
+        </header>
 
-    <main>
-        <div class="profile">
-            <div class="profile__author">
-                <img src="./images/profile-avatar.jpg" alt="Аватар автора" class="profile__avatar">
-                <div class="profile__info">
-                    <div class="profile__inner">
-                        <h1 class="profile__name">Бильбо Бэггинс</h1>
-                        <button class="button button_type_edit"></button>
+        <main class="main">
+            <section class="profile">
+                <div class="profile__author">
+                    <img src="./images/profile-avatar.jpg" alt="Аватар автора" class="profile__avatar">
+                    <div class="profile__info">
+                        <div class="profile__inner">
+                            <h1 class="profile__name">Бильбо Бэггинс</h1>
+                            <button class="button button_type_edit" type="button" aria-label="Edit"></button>
+                        </div>
+                        <p class="profile__about">Путешественник</p>
                     </div>
-                    <p class="profile__about">Путешественник</p>
                 </div>
-            </div>
-            <button class="button button_type_add"></button>
-        </div>
+                <button class="button button_type_add" type="button" aria-label="Add"></button>
+            </section>
 
-        <ul class="elements">
-            <li class="element">
-                <img src="./images/elements-france.jpg" alt="Франция" class="element__image">
-                <div class="element__inner">
-                    <h2 class="title">Франция</h2>
-                    <button class="button button_type_like"></button>
-                </div>
-            </li>
-            <li class="element">
-                <img src="./images/elements-iceland.jpg" alt="Исландия" class="element__image">
-                <div class="element__inner">
-                    <h2 class="title">Исландия</h2>
-                    <button class="button button_type_like"></button>
-                </div>
-            </li>
-            <li class="element">
-                <img src="./images/elements-switzerland.jpg" alt="Швейцария" class="element__image">
-                <div class="element__inner">
-                    <h2 class="title">Швейцария</h2>
-                    <button class="button button_type_like"></button>
-                </div>
-            </li>
-            <li class="element">
-                <img src="./images/elements-united-kingdom.jpg" alt="Великобритания" class="element__image">
-                <div class="element__inner">
-                    <h2 class="title">Великобритания</h2>
-                    <button class="button button_type_like"></button>
-                </div>
-            </li>
-            <li class="element">
-                <img src="./images/elements-usa.jpg" alt="США" class="element__image">
-                <div class="element__inner">
-                    <h2 class="title">США</h2>
-                    <button class="button button_type_like"></button>
-                </div>
-            </li>
-            <li class="element">
-                <img src="./images/elements-new-zealand.jpg" alt="Новая Зеландия" class="element__image">
-                <div class="element__inner">
-                    <h2 class="title">Новая Зеландия</h2>
-                    <button class="button button_type_like"></button>
-                </div>
-            </li>
-        </ul>
-    </main>
-    <footer class="footer">
-        <p class="footer__copyright">© 2021 Сергей Митрофанов</p>
-    </footer>
-</div>
-<div class="popup">
-    <div class="popup__container">
-        <button class="button button_type_close"></button>
-        <h2 class="title">Редактировать профиль</h2>
-        <form class="popup__form">
-            <input type="text" class="popup__text-field popup__name" placeholder="Имя">
-            <input type="text" class="popup__text-field popup__about" placeholder="О себе">
-            <input type="submit" class="button button_type_submit" value="Сохранить">
-        </form>
+            <section class="elements">
+                <ul class="elements__inner">
+                    <li class="element">
+                        <img src="./images/elements-france.jpg" alt="Франция" class="element__image">
+                        <div class="element__inner">
+                            <h2 class="element__title">Франция</h2>
+                            <!-- Заголовок с идентичными стилями, за исключением уменьшения размера шрифта в мобильной
+                                 версии, используется в popup. Поэтому я и вынес его отдельно для переиспользования -->
+                            <button class="button button_type_like" type="button" aria-label="Like"></button>
+                        </div>
+                    </li>
+                    <li class="element">
+                        <img src="./images/elements-iceland.jpg" alt="Исландия" class="element__image">
+                        <div class="element__inner">
+                            <h2 class="element__title">Исландия</h2>
+                            <button class="button button_type_like" type="button" aria-label="Like"></button>
+                        </div>
+                    </li>
+                    <li class="element">
+                        <img src="./images/elements-switzerland.jpg" alt="Швейцария" class="element__image">
+                        <div class="element__inner">
+                            <h2 class="element__title">Швейцария</h2>
+                            <button class="button button_type_like" type="button" aria-label="Like"></button>
+                        </div>
+                    </li>
+                    <li class="element">
+                        <img src="./images/elements-united-kingdom.jpg" alt="Великобритания" class="element__image">
+                        <div class="element__inner">
+                            <h2 class="element__title">Великобритания</h2>
+                            <button class="button button_type_like" type="button" aria-label="Like"></button>
+                        </div>
+                    </li>
+                    <li class="element">
+                        <img src="./images/elements-usa.jpg" alt="США" class="element__image">
+                        <div class="element__inner">
+                            <h2 class="element__title">США</h2>
+                            <button class="button button_type_like" type="button" aria-label="Like"></button>
+                        </div>
+                    </li>
+                    <li class="element">
+                        <img src="./images/elements-new-zealand.jpg" alt="Новая Зеландия" class="element__image">
+                        <div class="element__inner">
+                            <h2 class="element__title">Новая Зеландия</h2>
+                            <button class="button button_type_like" type="button" aria-label="Like"></button>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p class="footer__copyright">© 2021 Сергей Митрофанов</p>
+        </footer>
     </div>
-</div>
-<script src="./blocks/root/root.js"></script>
+
+    <div class="popup">
+        <div class="popup__container">
+            <button class="button button_type_close" type="button" aria-label="Close"></button>
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <form class="popup__form" name="popup__form">
+                <input type="text" class="popup__text-field popup__name" placeholder="Имя" name="name" required>
+                <input type="text" class="popup__text-field popup__about" placeholder="О себе" name="about" required>
+                <button type="submit" class="button button_type_submit">Сохранить</button>
+            </form>
+        </div>
+    </div>
+    <script src="./blocks/root/root.js"></script>
 </body>
 </html>

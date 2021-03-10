@@ -20,10 +20,6 @@
     cursor: pointer;
 }
 
-.button:hover {
-    opacity: .7;
-}
-
 .button:active {
     transform: scale(.95);
 }

@@ -7,6 +7,10 @@
     background-size: 22px 22px;
 }
 
+.button_type_add:hover {
+    opacity: .6;
+}
+
 @media screen and (max-width: 768px) {
     .button_type_add {
         margin: 36px 0 0;
