@@ -31,50 +31,7 @@
 
             <section class="elements">
                 <ul class="elements__inner">
-                    <li class="element">
-                        <img src="./images/elements-france.jpg" alt="Франция" class="element__image">
-                        <div class="element__inner">
-                            <h2 class="element__title">Франция</h2>
-                            <!-- Заголовок с идентичными стилями, за исключением уменьшения размера шрифта в мобильной
-                                 версии, используется в popup. Поэтому я и вынес его отдельно для переиспользования -->
-                            <button class="button button_type_like" type="button" aria-label="Like"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img src="./images/elements-iceland.jpg" alt="Исландия" class="element__image">
-                        <div class="element__inner">
-                            <h2 class="element__title">Исландия</h2>
-                            <button class="button button_type_like" type="button" aria-label="Like"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img src="./images/elements-switzerland.jpg" alt="Швейцария" class="element__image">
-                        <div class="element__inner">
-                            <h2 class="element__title">Швейцария</h2>
-                            <button class="button button_type_like" type="button" aria-label="Like"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img src="./images/elements-united-kingdom.jpg" alt="Великобритания" class="element__image">
-                        <div class="element__inner">
-                            <h2 class="element__title">Великобритания</h2>
-                            <button class="button button_type_like" type="button" aria-label="Like"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img src="./images/elements-usa.jpg" alt="США" class="element__image">
-                        <div class="element__inner">
-                            <h2 class="element__title">США</h2>
-                            <button class="button button_type_like" type="button" aria-label="Like"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img src="./images/elements-new-zealand.jpg" alt="Новая Зеландия" class="element__image">
-                        <div class="element__inner">
-                            <h2 class="element__title">Новая Зеландия</h2>
-                            <button class="button button_type_like" type="button" aria-label="Like"></button>
-                        </div>
-                    </li>
+
                 </ul>
             </section>
         </main>
@@ -95,6 +52,25 @@
             </form>
         </div>
     </div>
+
+    <div class="lightbox">
+        <div class="lightbox__inner">
+            <button class="button button_type_close lightbox_close" type="button" aria-label="Close"></button>
+            <img src="" alt="" class="lightbox__image">
+            <p class="lightbox__caption"></p>
+        </div>
+    </div>
+
+    <template id="element-template">
+        <li class="element">
+            <img src="" alt="" class="element__image">
+            <div class="element__inner">
+                <h2 class="element__title"></h2>
+                <button class="button button_type_trash" type="button" aria-label="Trash"></button>
+                <button class="button button_type_like" type="button" aria-label="Like"></button>
+            </div>
+        </li>
+    </template>
     <script src="./blocks/root/root.js"></script>
 </body>
 </html>
