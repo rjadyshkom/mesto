@@ -1,16 +1,108 @@
 const editButton = document.querySelector('.button_type_edit');
 const addButton = document.querySelector('.button_type_add');
-const closeButton = document.querySelector('.button_type_close');
+const closeEditButton = document.querySelector('#close-edit');
+const closeAddButton = document.querySelector('#close-add');
 const closeLightboxButton = document.querySelector('.lightbox__button-close');
-const popup = document.querySelector('.popup');
 const lightbox = document.querySelector('.lightbox');
-const popupTitle = document.querySelector('.popup__title');
 const popupName = document.querySelector('.popup__name');
 const popupAbout = document.querySelector('.popup__about');
 const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about');
-const formElement = popup.querySelector('.popup__form');
 const elementsContainer = document.querySelector('.elements__inner');
+const popupEdit = document.querySelector('#popup-edit');
+const popupAdd = document.querySelector('#popup-add');
+
+function createCard(cardData) {
+    const template = document.querySelector('#element-template').content;
+    const element = template.querySelector('.element').cloneNode(true);
+    const image = template.querySelector('.element__image');
+    const title = template.querySelector('.element__title');
+
+    image.src = cardData.link;
+    image.alt = cardData.name;
+    title.textContent = cardData.name;
+
+    elementTrash(element);
+    elementLike(element);
+    lightboxOpen(element);
+
+    return element;
+}
+
+
+function elementTrash(event) {
+    const buttonTrash = event.querySelector('.button_type_trash');
+    buttonTrash.addEventListener('click', function () {
+        event.remove()
+        return event;
+    });
+}
+
+function elementLike(event) {
+    const buttonLike = event.querySelector('.button_type_like');
+    buttonLike.addEventListener('click', function (event) {
+        event.target.classList.toggle('button_type_like_active');
+        return event;
+    });
+}
+
+function lightboxOpen() {
+
+}
+
+function openPopupEdit() {
+    popupEdit.classList.add('popup_opened');
+    popupName.value = profileName.textContent;
+    popupAbout.value = profileAbout.textContent;
+}
+
+function openPopupAdd() {
+    popupAdd.classList.add('popup_opened');
+}
+
+function closePopupEdit() {
+    popupEdit.classList.remove('popup_opened');
+}
+
+function closePopupAdd() {
+    popupAdd.classList.remove('popup_opened');
+}
+
+
+function openLightbox() {
+    lightbox.classList.add('lightbox_opened');
+}
+
+function closeLightbox() {
+    lightbox.classList.remove('lightbox_opened');
+}
+
+
+function formSubmitHandler(evt) {
+    evt.preventDefault();
+    profileName.textContent = popupName.value;
+    profileAbout.textContent = popupAbout.value;
+    closePopupEdit();
+}
+
+function formSubmitAddCard(evt) {
+    evt.preventDefault();
+
+    elementsContainer.prepend();
+    closePopupAdd();
+}
+
+
+editButton.addEventListener('click', openPopupEdit);
+addButton.addEventListener('click', openPopupAdd);
+
+closeEditButton.addEventListener('click', closePopupEdit);
+closeAddButton.addEventListener('click', closePopupAdd);
+closeLightboxButton.addEventListener('click', closeLightbox);
+
+popupEdit.addEventListener('submit', formSubmitHandler);
+popupAdd.addEventListener('submit', formSubmitAddCard);
+
 const initialCards = [
     {
         name: 'Франция',
@@ -38,97 +130,7 @@ const initialCards = [
     }
 ];
 
-
-initialCards.forEach(element => {
-    const cardTemplate = document.querySelector('#element-template').content;
-    const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
-    cardElement.querySelector('.element__image').src = element.link;
-    cardElement.querySelector('.element__image').alt = element.name;
-    cardElement.querySelector('.element__title').textContent = element.name;
-
-    cardElement.querySelector('.button_type_trash').addEventListener('click', () => {
-        cardElement.remove();
-    });
-
-
-    cardElement.querySelector('.button_type_like').addEventListener('click', evt => {
-        evt.target.classList.toggle('button_type_like_active');
-    });
-
-    cardElement.querySelector('.element__image').addEventListener('click', () => {
-        openLightbox();
-        document.querySelector('.lightbox__image').src = element.link;
-        document.querySelector('.lightbox__caption').textContent = element.name;
-    })
-
-    elementsContainer.append(cardElement);
+initialCards.forEach(cardData => {
+    const card = createCard(cardData);
+    elementsContainer.append(card);
 });
-
-
-function openPopup() {
-    popup.classList.add('popup_opened');
-    popupTitle.textContent = 'Редактировать профиль';
-    popupName.value = profileName.textContent;
-    popupAbout.value = profileAbout.textContent;
-    formElement.setAttribute('data', 'editForm');
-}
-
-function closePopup() {
-    popup.classList.remove('popup_opened');
-}
-
-function openLightbox() {
-    lightbox.classList.add('lightbox_opened');
-}
-
-function closeLightbox() {
-    lightbox.classList.remove('lightbox_opened');
-}
-
-
-function formSubmitHandler(evt) {
-    evt.preventDefault();
-    profileName.textContent = popupName.value;
-    profileAbout.textContent = popupAbout.value;
-    closePopup();
-}
-
-function formSubmitAddCard(evt) {
-    evt.preventDefault();
-    const cardTemplate = document.querySelector('#element-template').content;
-    const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
-    cardElement.querySelector('.element__image').src = popupAbout.value;
-    cardElement.querySelector('.element__title').textContent = popupName.value;
-    cardElement.querySelector('.button_type_trash').addEventListener('click', () => {
-        cardElement.remove();
-    });
-    cardElement.querySelector('.button_type_like').addEventListener('click', function (evt) {
-        evt.target.classList.toggle('button_type_like_active');
-    });
-    elementsContainer.prepend(cardElement);
-    closePopup();
-}
-
-
-editButton.addEventListener('click', openPopup);
-closeButton.addEventListener('click', closePopup);
-closeLightboxButton.addEventListener('click', closeLightbox);
-
-addButton.addEventListener('click', () => {
-    openPopup();
-    popupTitle.textContent = 'Новое место';
-    popupName.value = 'Название';
-    popupAbout.value = 'Ссылка на картинку';
-    formElement.setAttribute('data', 'addForm');
-});
-
-
-formElement.addEventListener('submit', e => {
-        const formDataAttribute = formElement.getAttribute('data')
-        if (formDataAttribute === 'editForm') {
-            return formSubmitHandler(e);
-        } else {
-            return formSubmitAddCard(e);
-        }
-    }
-);
