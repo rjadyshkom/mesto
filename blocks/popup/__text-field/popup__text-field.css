@@ -1,6 +1,6 @@
 .popup__text-field {
     margin: 30px 0 0;
-    padding: 0;
+    padding: 2px 10px 8px;
     border-radius: 0;
     outline: none;
     border: 0;
@@ -12,7 +12,8 @@
 }
 
 .popup__text-field:focus {
-    outline: 1px solid rgba(0, 0, 0, .2);
+    outline: 2px solid #6696fa;
+    outline-offset: -2px;
 }
 
 .popup__text-field::-webkit-input-placeholder,

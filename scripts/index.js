@@ -50,7 +50,7 @@ function formSubmitAddCard(event) {
         link: inputLink.value
     }
     elementsContainer.prepend(createCard(cardData));
-    closePopupAdd();
+    togglePopup(popupAdd);
 }
 
 
@@ -64,35 +64,42 @@ function elementLike(event) {
     return event;
 }
 
+function togglePopup(popup) {
+    popup.classList.toggle('popup_opened')
+}
+
 function openPopupEdit() {
-    popupEdit.classList.add('popup_opened');
+    togglePopup(popupEdit);
     popupName.value = profileName.textContent;
     popupAbout.value = profileAbout.textContent;
 }
 
 function closePopupEdit() {
-    popupEdit.classList.remove('popup_opened')
+    togglePopup(popupEdit);
     popupName.value = '';
     popupAbout.value = '';
 }
 
 function openPopupAdd() {
-    popupAdd.classList.add('popup_opened');
+    togglePopup(popupAdd);
 }
 
 function closePopupAdd() {
-    popupAdd.classList.remove('popup_opened');
+    togglePopup(popupAdd);
 }
 
-function openLightbox(event) {
-    lightbox.classList.add('lightbox_opened');
-    lightboxImage.src = event.target.src;
+function openLightbox(cardData) {
+    togglePopup(lightbox);
+    lightboxImage.src = cardData.link
+    lightboxImage.alt = cardData.name
+    lightboxCaption.textContent = cardData.name
+    /*lightboxImage.src = event.target.src;
     lightboxImage.alt = event.target.alt;
-    lightboxCaption.textContent = event.target.nextElementSibling.querySelector('.element__title').textContent;
+    lightboxCaption.textContent = event.target.nextElementSibling.querySelector('.element__title').textContent;*/
 }
 
 function closeLightbox() {
-    lightbox.classList.remove('lightbox_opened');
+    togglePopup(lightbox);
 }
 
 
@@ -100,7 +107,7 @@ function formSubmitHandler(evt) {
     evt.preventDefault();
     profileName.textContent = popupName.value;
     profileAbout.textContent = popupAbout.value;
-    closePopupEdit();
+    togglePopup(popupEdit);
 }
 
 
