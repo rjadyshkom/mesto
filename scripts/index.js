@@ -33,11 +33,11 @@ function createCard(cardData) {
     });
 
     like.addEventListener('click', (event) => {
-        elementLike(event)
+        elementLike(event);
     });
 
-    image.addEventListener('click', (event) => {
-        openLightbox(event)
+    image.addEventListener('click', () => {
+        openLightbox(cardData);
     });
 
     return element;
@@ -52,7 +52,6 @@ function formSubmitAddCard(event) {
     elementsContainer.prepend(createCard(cardData));
     togglePopup(popupAdd);
 }
-
 
 function elementTrash(event) {
     event.target.closest('.element').remove();
@@ -89,19 +88,15 @@ function closePopupAdd() {
 }
 
 function openLightbox(cardData) {
-    togglePopup(lightbox);
-    lightboxImage.src = cardData.link
-    lightboxImage.alt = cardData.name
-    lightboxCaption.textContent = cardData.name
-    /*lightboxImage.src = event.target.src;
-    lightboxImage.alt = event.target.alt;
-    lightboxCaption.textContent = event.target.nextElementSibling.querySelector('.element__title').textContent;*/
+    togglePopup(lightbox)
+    lightboxImage.src = cardData.link;
+    lightboxImage.alt = cardData.name;
+    lightboxCaption.textContent = cardData.name;
 }
 
 function closeLightbox() {
     togglePopup(lightbox);
 }
-
 
 function formSubmitHandler(evt) {
     evt.preventDefault();
@@ -109,7 +104,6 @@ function formSubmitHandler(evt) {
     profileAbout.textContent = popupAbout.value;
     togglePopup(popupEdit);
 }
-
 
 editButton.addEventListener('click', openPopupEdit);
 addButton.addEventListener('click', openPopupAdd);
