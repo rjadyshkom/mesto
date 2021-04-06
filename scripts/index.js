@@ -1,3 +1,4 @@
+const popupsArray = document.querySelectorAll('.popup');
 const editButton = document.querySelector('.button_type_edit');
 const addButton = document.querySelector('.button_type_add');
 const closeEditButton = document.querySelector('#close-edit');
@@ -71,6 +72,17 @@ const closePopupByEsc = function (evt) {
         closePopup(selectPopup);
     }
 }
+
+/* Способ не особо элегантный, так как попытка убрать несуществующий класс происходит при клике на любом элементе формы.
+С другой стороны слушатель каждый раз снимается, поэтому для производительности без разницы  (если я все правильно понимаю).
+Плюс не нужно в html добавлять дополнительный div для оверлея и закрывать окно только при клике на нём. */
+
+popupsArray.forEach(element => {
+    element.addEventListener('click', function (evt) {
+        closePopup(evt.target);
+        console.log(evt.target)
+    });
+});
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
