@@ -13,8 +13,8 @@ const popupEdit = document.querySelector('#popup-edit');
 const popupAdd = document.querySelector('#popup-add');
 const lightboxImage = lightbox.querySelector('.lightbox__image');
 const lightboxCaption = lightbox.querySelector('.lightbox__caption');
-const inputCaption = document.querySelector('#popup-add__caption');
-const inputLink = document.querySelector('#popup-add__link');
+const inputCaption = document.querySelector('#title-popup');
+const inputLink = document.querySelector('#link-popup');
 
 function createCard(cardData) {
     const template = document.querySelector('#element-template').content;
