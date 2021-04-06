@@ -9,8 +9,8 @@ const popupAbout = document.querySelector('.popup__about');
 const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about');
 const elementsContainer = document.querySelector('.elements__inner');
-const popupEdit = document.querySelector('#popup-edit');
-const popupAdd = document.querySelector('#popup-add');
+const popupEdit = document.querySelector('.popup_type_edit');
+const popupAdd = document.querySelector('.popup_type_add');
 const lightboxImage = lightbox.querySelector('.lightbox__image');
 const lightboxCaption = lightbox.querySelector('.lightbox__caption');
 const inputCaption = document.querySelector('#title-popup');
@@ -50,7 +50,7 @@ function formSubmitAddCard(event) {
         link: inputLink.value
     }
     elementsContainer.prepend(createCard(cardData));
-    togglePopup(popupAdd);
+    closePopup(popupAdd);
     inputCaption.value = '';
     inputLink.value = '';
 }
@@ -65,54 +65,55 @@ function elementLike(event) {
     return event;
 }
 
-function togglePopup(popup) {
-    popup.classList.toggle('popup_opened')
+const closePopupByEsc = function (evt) {
+    if (evt.key === 'Escape') {
+        const selectPopup = document.querySelector('.popup_opened');
+        closePopup(selectPopup);
+    }
+}
+
+function openPopup(popup) {
+    popup.classList.add('popup_opened');
+    document.addEventListener('keydown', closePopupByEsc);
+}
+
+function closePopup(popup) {
+    popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupByEsc);
 }
 
 function openPopupEdit() {
-    togglePopup(popupEdit);
+    openPopup(popupEdit);
     popupName.value = profileName.textContent;
     popupAbout.value = profileAbout.textContent;
 }
 
 function closePopupEdit() {
-    togglePopup(popupEdit);
+    closePopup(popupEdit);
     popupName.value = '';
     popupAbout.value = '';
 }
 
-function openPopupAdd() {
-    togglePopup(popupAdd);
-}
-
-function closePopupAdd() {
-    togglePopup(popupAdd);
-}
-
 function openLightbox(cardData) {
-    togglePopup(lightbox)
+    openPopup(lightbox)
     lightboxImage.src = cardData.link;
     lightboxImage.alt = cardData.name;
     lightboxCaption.textContent = cardData.name;
-}
-
-function closeLightbox() {
-    togglePopup(lightbox);
 }
 
 function formSubmitHandler(evt) {
     evt.preventDefault();
     profileName.textContent = popupName.value;
     profileAbout.textContent = popupAbout.value;
-    togglePopup(popupEdit);
+    closePopup(popupEdit);
 }
 
-editButton.addEventListener('click', openPopupEdit);
-addButton.addEventListener('click', openPopupAdd);
+editButton.addEventListener('click', () => openPopupEdit(popupEdit));
+addButton.addEventListener('click', () => openPopup(popupAdd));
 
-closeEditButton.addEventListener('click', closePopupEdit);
-closeAddButton.addEventListener('click', closePopupAdd);
-closeLightboxButton.addEventListener('click', closeLightbox);
+closeEditButton.addEventListener('click', () => closePopupEdit(popupEdit));
+closeAddButton.addEventListener('click', () => closePopup(popupAdd));
+closeLightboxButton.addEventListener('click', () => closePopup(lightbox));
 
 popupEdit.addEventListener('submit', formSubmitHandler);
 popupAdd.addEventListener('submit', formSubmitAddCard);
