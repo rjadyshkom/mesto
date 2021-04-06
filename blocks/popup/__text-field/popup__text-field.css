@@ -11,11 +11,6 @@
     min-height: 27px;
 }
 
-.popup__text-field:focus {
-    outline: 2px solid #6696fa;
-    outline-offset: -2px;
-}
-
 .popup__text-field::-webkit-input-placeholder,
 .popup__text-field::-moz-placeholder,
 .popup__text-field::-ms-input-placeholder,

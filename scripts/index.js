@@ -51,6 +51,8 @@ function formSubmitAddCard(event) {
     }
     elementsContainer.prepend(createCard(cardData));
     togglePopup(popupAdd);
+    inputCaption.value = '';
+    inputLink.value = '';
 }
 
 function elementTrash(event) {
