@@ -1,5 +1,6 @@
 .lightbox__inner {
     position: relative;
+    cursor: default;
 }
 
 @media screen and (max-width: 600px) {

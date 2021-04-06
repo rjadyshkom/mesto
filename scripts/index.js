@@ -80,7 +80,6 @@ const closePopupByEsc = function (evt) {
 popupsArray.forEach(element => {
     element.addEventListener('click', function (evt) {
         closePopup(evt.target);
-        console.log(evt.target)
     });
 });
 
