@@ -1,6 +1,6 @@
 const popupsArray = document.querySelectorAll('.popup');
-const editButton = document.querySelector('.button_type_edit');
-const addButton = document.querySelector('.button_type_add');
+const editButton = document.querySelector('.profile__edit');
+const addButton = document.querySelector('.profile__add');
 const closeEditButton = document.querySelector('#close-edit');
 const closeAddButton = document.querySelector('#close-add');
 const closeLightboxButton = document.querySelector('.lightbox__button-close');
@@ -22,19 +22,19 @@ function createCard(cardData) {
     const element = template.querySelector('.element').cloneNode(true);
     const image = element.querySelector('.element__image');
     const title = element.querySelector('.element__title');
-    const trash = element.querySelector('.button_type_trash');
-    const like = element.querySelector('.button_type_like');
+    const trash = element.querySelector('.element__trash');
+    const like = element.querySelector('.element__like');
 
     image.src = cardData.link;
     image.alt = cardData.name;
     title.textContent = cardData.name;
 
     trash.addEventListener('click', (event) => {
-        elementTrash(event);
+        trashElement(event);
     });
 
     like.addEventListener('click', (event) => {
-        elementLike(event);
+        likeElement(event);
     });
 
     image.addEventListener('click', () => {
@@ -44,7 +44,7 @@ function createCard(cardData) {
     return element;
 }
 
-function formSubmitAddCard(event) {
+function handleCardFormSubmit(event) {
     event.preventDefault();
     const cardData = {
         name: inputCaption.value,
@@ -52,17 +52,17 @@ function formSubmitAddCard(event) {
     }
     elementsContainer.prepend(createCard(cardData));
     closePopup(popupAdd);
-    inputCaption.value = '';
-    inputLink.value = '';
+    event.target.reset();
+    enableFormsValidation(); // не додумался, какие аргументы нужно передать в toggleButtonState, чтобы заработало, поэтому сделал так.
 }
 
-function elementTrash(event) {
+function trashElement(event) {
     event.target.closest('.element').remove();
     return event;
 }
 
-function elementLike(event) {
-    event.target.classList.toggle('button_type_like_active');
+function likeElement(event) {
+    event.target.classList.toggle('element__like_active');
     return event;
 }
 
@@ -71,15 +71,13 @@ const closePopupByEsc = function (evt) {
         const selectPopup = document.querySelector('.popup_opened');
         closePopup(selectPopup);
     }
-}
-
-/* Способ не особо элегантный, так как попытка снять класс происходит при клике на любом элементе формы.
-С другой стороны слушатель каждый раз снимается, поэтому для производительности вроде бы без разницы  (если я все правильно понимаю).
-Плюс не нужно в html добавлять дополнительный div для оверлея и закрывать окно только при клике на нём. */
+};
 
 popupsArray.forEach(element => {
     element.addEventListener('click', function (evt) {
-        closePopup(evt.target);
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(element);
+        }
     });
 });
 
@@ -112,7 +110,7 @@ function openLightbox(cardData) {
     lightboxCaption.textContent = cardData.name;
 }
 
-function formSubmitHandler(evt) {
+function handleProfileFormSubmit(evt) {
     evt.preventDefault();
     profileName.textContent = popupName.value;
     profileAbout.textContent = popupAbout.value;
@@ -126,35 +124,8 @@ closeEditButton.addEventListener('click', () => closePopupEdit(popupEdit));
 closeAddButton.addEventListener('click', () => closePopup(popupAdd));
 closeLightboxButton.addEventListener('click', () => closePopup(lightbox));
 
-popupEdit.addEventListener('submit', formSubmitHandler);
-popupAdd.addEventListener('submit', formSubmitAddCard);
-
-const initialCards = [
-    {
-        name: 'Франция',
-        link: './images/elements-france.jpg'
-    },
-    {
-        name: 'Исландия',
-        link: './images/elements-iceland.jpg'
-    },
-    {
-        name: 'Швейцария',
-        link: './images/elements-switzerland.jpg'
-    },
-    {
-        name: 'Великобритания',
-        link: './images/elements-united-kingdom.jpg'
-    },
-    {
-        name: 'США',
-        link: './images/elements-usa.jpg'
-    },
-    {
-        name: 'Новая Зеландия',
-        link: './images/elements-new-zealand.jpg'
-    }
-];
+popupEdit.addEventListener('submit', handleProfileFormSubmit);
+popupAdd.addEventListener('submit', handleCardFormSubmit);
 
 initialCards.forEach(cardData => {
     const card = createCard(cardData);

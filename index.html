@@ -2,31 +2,31 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./pages/index.css">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <link href="./pages/index.css" rel="stylesheet">
     <title>Mesto</title>
 </head>
 <body class="root">
     <div class="root__container">
         <header class="header">
-            <img src="./images/header-logo.svg" alt="Логотип проекта Mesto" class="header__logo">
+            <img alt="Логотип проекта Mesto" class="header__logo" src="./images/header-logo.svg">
         </header>
 
         <main class="main">
             <section class="profile">
                 <div class="profile__author">
-                    <img src="./images/profile-avatar.jpg" alt="Аватар автора" class="profile__avatar">
+                    <img alt="Аватар автора" class="profile__avatar" src="./images/profile-avatar.jpg">
                     <div class="profile__info">
                         <div class="profile__inner">
                             <h1 class="profile__name">Бильбо Бэггинс</h1>
-                            <button class="button button_type_edit" type="button" aria-label="Edit"></button>
+                            <button aria-label="Редактировать" class="profile__edit" type="button"></button>
                         </div>
                         <p class="profile__about">Путешественник</p>
                     </div>
                 </div>
-                <button class="button button_type_add" type="button" aria-label="Add"></button>
+                <button aria-label="Добавить" class="profile__add" type="button"></button>
             </section>
 
             <section class="elements">
@@ -43,76 +43,77 @@
 
     <div class="popup popup_type_edit">
         <div class="popup__container">
-            <button class="button button_type_close" type="button" aria-label="Close" id="close-edit"></button>
+            <button aria-label="Закрыть" class="popup__close" id="close-edit" type="button"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form class="popup__form" name="popup__form">
-                <input id="name-popup"
-                       class="popup__text-field popup__name"
-                       placeholder="Имя"
-                       name="name"
-                       type="text"
-                       minlength="2"
+            <form class="popup__form" name="form-edit">
+                <input class="popup__text-field popup__name"
+                       id="name-popup"
                        maxlength="40"
-                       required>
-                <span class="name-popup-error popup__error"></span>
-                <input id="about-popup"
-                       class="popup__text-field popup__about"
-                       placeholder="О себе"
-                       name="about"
-                       type="text"
                        minlength="2"
+                       name="name"
+                       placeholder="Имя"
+                       required
+                       type="text">
+                <span class="name-popup-error popup__error"></span>
+                <input class="popup__text-field popup__about"
+                       id="about-popup"
                        maxlength="200"
-                       required>
+                       minlength="2"
+                       name="about"
+                       placeholder="О себе"
+                       required
+                       type="text">
                 <span class="about-popup-error popup__error"></span>
-                <button type="submit" class="button button_type_submit">Сохранить</button>
+                <button class="popup__submit" type="submit">Сохранить</button>
             </form>
         </div>
     </div>
 
     <div class="popup popup_type_add">
         <div class="popup__container">
-            <button class="button button_type_close" type="button" aria-label="Close" id="close-add"></button>
+            <button aria-label="Закрыть" class="popup__close" id="close-add" type="button"></button>
             <h2 class="popup__title">Новое место</h2>
-            <form class="popup__form" name="popup__form">
-                <input id="title-popup"
-                       class="popup__text-field popup__name"
+            <form class="popup__form" name="form-add">
+                <input class="popup__text-field popup__name"
+                       id="title-popup"
+                       maxlength="30"
+                       minlength="2" name="title"
                        placeholder="Название"
-                       name="title" type="text"
                        required
-                       minlength="2"
-                       maxlength="30">
+                       type="text">
                 <span class="title-popup-error popup__error"></span>
-                <input id="link-popup"
-                       class="popup__text-field popup__about"
-                       placeholder="Ссылка на картинку"
+                <input class="popup__text-field popup__about"
+                       id="link-popup"
                        name="link"
-                       type="url"
-                       required>
+                       placeholder="Ссылка на картинку"
+                       required
+                       type="url">
                 <span class="link-popup-error popup__error"></span>
-                <button type="submit" class="button button_type_submit">Сохранить</button>
+                <button class="popup__submit" type="submit">Сохранить</button>
             </form>
         </div>
     </div>
 
     <div class="popup lightbox">
         <div class="lightbox__inner">
-            <button class="lightbox__button-close button button_type_close " type="button" aria-label="Close"
-                    id="close-lightbox"></button>
-            <img src="./images/elements-new-zealand.jpg" alt="Новая Зеландия" class="lightbox__image">
+            <button aria-label="Закрыть" class="popup__close lightbox__button-close" id="close-lightbox"
+                    type="button"></button>
+            <img alt="Новая Зеландия" class="lightbox__image" src="./images/elements-new-zealand.jpg">
             <p class="lightbox__caption">Новая Зеландия</p>
         </div>
     </div>
 
     <template id="element-template">
         <li class="element">
-            <img src="./images/elements-new-zealand.jpg" alt="Изображение из template" class="element__image">
+            <img alt="Изображение из template" class="element__image" src="./images/elements-new-zealand.jpg">
             <div class="element__inner">
                 <h2 class="element__title">Изображение из template</h2>
-                <button class="button button_type_trash" type="button" aria-label="Trash"></button>
-                <button class="button button_type_like" type="button" aria-label="Like"></button>
+                <button aria-label="Удалить" class="element__trash" type="button"></button>
+                <button aria-label="Лайк" class="element__like" type="button"></button>
             </div>
         </li>
     </template>
+    <script src="scripts/initial-сards.js"></script>
     <script src="scripts/index.js"></script>
     <script src="scripts/validate.js"></script>
 </body>

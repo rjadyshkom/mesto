@@ -1,4 +1,9 @@
-.button {
+.element__like {
+    width: 24px;
+    height: 19px;
+    background-image: url(../../../images/elements-like-button.svg);
+    background-size: 24px 19px;
+    justify-self: end;
     margin: 0 0 0 18px;
     padding: 0;
     flex-shrink: 0;
@@ -20,12 +25,10 @@
     cursor: pointer;
 }
 
-.button:active {
+.element__like:active {
     transform: scale(.95);
 }
 
-@media screen and (max-width: 768px) {
-    .button {
-        margin: 0 0 0 10px;
-    }
+.element__like:hover {
+    opacity: .5;
 }

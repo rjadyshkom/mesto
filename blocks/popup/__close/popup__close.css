@@ -1,0 +1,45 @@
+.popup__close {
+    padding: 0;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    border-radius: 0;
+    border-color: transparent;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center center;
+    outline: none;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -webkit-transition: opacity .3s ease-in-out;
+    -moz-transition: opacity .3s ease-in-out;
+    -o-transition: opacity .3s ease-in-out;
+    -ms-transition: opacity .3s ease-in-out;
+    transition: opacity .3s ease-in-out;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    background-image: url(../../../images/popup-close-icon.svg);
+    background-size: contain;
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    margin: 0;
+}
+
+.popup__close:hover {
+    opacity: .6;
+}
+
+.popup__close:active {
+    transform: scale(.95);
+}
+
+@media screen and (max-width: 600px) {
+    .popup__close {
+        right: 0;
+        width: 26px;
+        height: 26px;
+        background-size: 26px 26px;
+    }
+}

@@ -1,8 +1,8 @@
 const enableValidation = {
     formSelector: '.popup__form',
     inputSelector: '.popup__text-field',
-    submitButtonSelector: '.button_type_submit',
-    inactiveButtonClass: 'button_type_submit_disabled',
+    submitButtonSelector: '.popup__submit',
+    inactiveButtonClass: 'popup__submit_disabled',
     inputErrorClass: 'popup__text-field_type_error',
     errorClass: 'popup__error_visible'
 };
