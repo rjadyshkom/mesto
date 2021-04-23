@@ -3,10 +3,10 @@ import Card from './Card.js'
 import FormValidator from "./FormValidator.js";
 
 const popupsArray = document.querySelectorAll('.popup');
-const editButton = document.querySelector('.profile__edit');
-const addButton = document.querySelector('.profile__add');
-const closeEditButton = document.querySelector('#close-edit');
-const closeAddButton = document.querySelector('#close-add');
+const buttonEdit = document.querySelector('.profile__edit');
+const buttonClose = document.querySelector('.profile__add');
+const buttonEditClose = document.querySelector('#close-edit');
+const buttonAddClose = document.querySelector('#close-add');
 const popupName = document.querySelector('.popup__name');
 const popupAbout = document.querySelector('.popup__about');
 const profileName = document.querySelector('.profile__name');
@@ -16,8 +16,8 @@ const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
 const inputCaption = document.querySelector('#title-popup');
 const inputLink = document.querySelector('#link-popup');
-const editForm = document.querySelector('#editForm');
-const addForm = document.querySelector('#addForm');
+const formEdit = document.querySelector('#editForm');
+const formAdd = document.querySelector('#addForm');
 
 export const lightbox = document.querySelector('.lightbox');
 export const lightboxImage = document.querySelector('.lightbox__image');
@@ -33,10 +33,10 @@ const formConfig = {
     errorClass: 'popup__error_visible'
 };
 
-const validationEdit = new FormValidator(formConfig, editForm);
+const validationEdit = new FormValidator(formConfig, formEdit);
 validationEdit.enableFormsValidation();
 
-const validationAdd = new FormValidator(formConfig, addForm);
+const validationAdd = new FormValidator(formConfig, formAdd);
 validationAdd.enableFormsValidation();
 
 function handleCardFormSubmit(event) {
@@ -48,6 +48,7 @@ function handleCardFormSubmit(event) {
     elementsContainer.prepend(addCard.generateCard());
     closePopup(popupAdd);
     event.target.reset();
+    validationAdd.enableFormsValidation();
 }
 
 export const closePopupByEsc = function (evt) {
@@ -94,11 +95,11 @@ function handleProfileFormSubmit(evt) {
     closePopup(popupEdit);
 }
 
-editButton.addEventListener('click', () => openPopupEdit(popupEdit));
-addButton.addEventListener('click', () => openPopup(popupAdd));
+buttonEdit.addEventListener('click', () => openPopupEdit(popupEdit));
+buttonClose.addEventListener('click', () => openPopup(popupAdd));
 
-closeEditButton.addEventListener('click', () => closePopupEdit(popupEdit));
-closeAddButton.addEventListener('click', () => closePopup(popupAdd));
+buttonEditClose.addEventListener('click', () => closePopupEdit(popupEdit));
+buttonAddClose.addEventListener('click', () => closePopup(popupAdd));
 
 popupEdit.addEventListener('submit', handleProfileFormSubmit);
 popupAdd.addEventListener('submit', handleCardFormSubmit);

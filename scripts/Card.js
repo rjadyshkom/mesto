@@ -22,6 +22,7 @@ export default class Card {
 
     _handleTrashCard() {
         this._element.remove();
+        this._element = null;
     }
 
     _setEventListeners() {
@@ -59,6 +60,7 @@ export default class Card {
         this._setEventListeners();
 
         this._element.querySelector('.element__image').src = this._cardImage;
+        this._element.querySelector('.element__image').alt = this._cardTitle;
         this._element.querySelector('.element__title').textContent = this._cardTitle;
         return this._element;
     }
