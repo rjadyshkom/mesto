@@ -1,4 +1,12 @@
-import {closeLightboxButton, closePopupByEsc, lightbox, lightboxCaption, lightboxImage} from "./index.js";
+import {
+    closeLightboxButton,
+    closePopupByEsc,
+    disableScroll,
+    enableScroll,
+    lightbox,
+    lightboxCaption,
+    lightboxImage
+} from "./index.js";
 
 export default class Card {
     constructor(data, cardSelector) {
@@ -48,11 +56,13 @@ export default class Card {
         lightboxCaption.textContent = this._cardTitle;
         lightbox.classList.add('popup_opened');
         document.addEventListener('keydown', closePopupByEsc);
+        disableScroll();
     }
 
     _handleCloseLightbox() {
         lightbox.classList.remove('popup_opened');
         document.removeEventListener('keydown', closePopupByEsc);
+        enableScroll();
     }
 
     generateCard() {

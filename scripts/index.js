@@ -2,6 +2,7 @@ import {cardData} from './cardData.js'
 import Card from './Card.js'
 import FormValidator from "./FormValidator.js";
 
+const rootContainer = document.querySelector('.root');
 const popupsArray = document.querySelectorAll('.popup');
 const buttonEdit = document.querySelector('.profile__edit');
 const buttonClose = document.querySelector('.profile__add');
@@ -69,11 +70,13 @@ popupsArray.forEach(element => {
 function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closePopupByEsc);
+    disableScroll();
 }
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', closePopupByEsc);
+    enableScroll();
 }
 
 function openPopupEdit() {
@@ -94,6 +97,17 @@ function handleProfileFormSubmit(evt) {
     profileAbout.textContent = popupAbout.value;
     closePopup(popupEdit);
 }
+
+export function disableScroll() {
+    const scrollbarWidth = window.innerWidth - document.documentElement.offsetWidth
+    rootContainer.style.overflow = 'hidden';
+    rootContainer.style.paddingRight = `${scrollbarWidth}px`;
+}
+
+export function enableScroll() {
+    rootContainer.removeAttribute('style');
+}
+
 
 buttonEdit.addEventListener('click', () => openPopupEdit(popupEdit));
 buttonClose.addEventListener('click', () => openPopup(popupAdd));
