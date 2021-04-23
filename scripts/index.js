@@ -1,10 +1,12 @@
+import {cardData} from './cardData.js'
+import Card from './Card.js'
+import FormValidator from "./FormValidator.js";
+
 const popupsArray = document.querySelectorAll('.popup');
 const editButton = document.querySelector('.profile__edit');
 const addButton = document.querySelector('.profile__add');
 const closeEditButton = document.querySelector('#close-edit');
 const closeAddButton = document.querySelector('#close-add');
-const closeLightboxButton = document.querySelector('.lightbox__button-close');
-const lightbox = document.querySelector('.lightbox');
 const popupName = document.querySelector('.popup__name');
 const popupAbout = document.querySelector('.popup__about');
 const profileName = document.querySelector('.profile__name');
@@ -12,61 +14,43 @@ const profileAbout = document.querySelector('.profile__about');
 const elementsContainer = document.querySelector('.elements__inner');
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
-const lightboxImage = lightbox.querySelector('.lightbox__image');
-const lightboxCaption = lightbox.querySelector('.lightbox__caption');
 const inputCaption = document.querySelector('#title-popup');
 const inputLink = document.querySelector('#link-popup');
+const editForm = document.querySelector('#editForm');
+const addForm = document.querySelector('#addForm');
 
-function createCard(cardData) {
-    const template = document.querySelector('#element-template').content;
-    const element = template.querySelector('.element').cloneNode(true);
-    const image = element.querySelector('.element__image');
-    const title = element.querySelector('.element__title');
-    const trash = element.querySelector('.element__trash');
-    const like = element.querySelector('.element__like');
+export const lightbox = document.querySelector('.lightbox');
+export const lightboxImage = document.querySelector('.lightbox__image');
+export const closeLightboxButton = document.querySelector('.lightbox__button-close');
+export const lightboxCaption = document.querySelector('.lightbox__caption');
 
-    image.src = cardData.link;
-    image.alt = cardData.name;
-    title.textContent = cardData.name;
+const formConfig = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__text-field',
+    submitButtonSelector: '.popup__submit',
+    inactiveButtonClass: 'popup__submit_disabled',
+    inputErrorClass: 'popup__text-field_type_error',
+    errorClass: 'popup__error_visible'
+};
 
-    trash.addEventListener('click', (event) => {
-        trashElement(event);
-    });
+const validationEdit = new FormValidator(formConfig, editForm);
+validationEdit.enableFormsValidation();
 
-    like.addEventListener('click', (event) => {
-        likeElement(event);
-    });
-
-    image.addEventListener('click', () => {
-        openLightbox(cardData);
-    });
-
-    return element;
-}
+const validationAdd = new FormValidator(formConfig, addForm);
+validationAdd.enableFormsValidation();
 
 function handleCardFormSubmit(event) {
     event.preventDefault();
-    const cardData = {
-        name: inputCaption.value,
-        link: inputLink.value
-    }
-    elementsContainer.prepend(createCard(cardData));
+    const card = {};
+    card.name = inputCaption.value;
+    card.link = inputLink.value;
+    const addCard = new Card(card, '#element-template')
+    elementsContainer.prepend(addCard.generateCard());
     closePopup(popupAdd);
     event.target.reset();
-    enableFormsValidation(); // не додумался, какие аргументы нужно передать в toggleButtonState, чтобы заработало, поэтому сделал так.
 }
 
-function trashElement(event) {
-    event.target.closest('.element').remove();
-    return event;
-}
-
-function likeElement(event) {
-    event.target.classList.toggle('element__like_active');
-    return event;
-}
-
-const closePopupByEsc = function (evt) {
+export const closePopupByEsc = function (evt) {
     if (evt.key === 'Escape') {
         const selectPopup = document.querySelector('.popup_opened');
         closePopup(selectPopup);
@@ -103,13 +87,6 @@ function closePopupEdit() {
     popupAbout.value = '';
 }
 
-function openLightbox(cardData) {
-    openPopup(lightbox)
-    lightboxImage.src = cardData.link;
-    lightboxImage.alt = cardData.name;
-    lightboxCaption.textContent = cardData.name;
-}
-
 function handleProfileFormSubmit(evt) {
     evt.preventDefault();
     profileName.textContent = popupName.value;
@@ -122,12 +99,12 @@ addButton.addEventListener('click', () => openPopup(popupAdd));
 
 closeEditButton.addEventListener('click', () => closePopupEdit(popupEdit));
 closeAddButton.addEventListener('click', () => closePopup(popupAdd));
-closeLightboxButton.addEventListener('click', () => closePopup(lightbox));
 
 popupEdit.addEventListener('submit', handleProfileFormSubmit);
 popupAdd.addEventListener('submit', handleCardFormSubmit);
 
-initialCards.forEach(cardData => {
-    const card = createCard(cardData);
-    elementsContainer.append(card);
+cardData.forEach((item) => {
+    const card = new Card(item, '#element-template');
+    const cardElement = card.generateCard();
+    document.querySelector('.elements__inner').append(cardElement);
 });

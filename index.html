@@ -45,7 +45,7 @@
         <div class="popup__container">
             <button aria-label="Закрыть" class="popup__close" id="close-edit" type="button"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form class="popup__form" name="form-edit">
+            <form class="popup__form" name="form-edit" id="editForm">
                 <input class="popup__text-field popup__name"
                        id="name-popup"
                        maxlength="40"
@@ -73,7 +73,7 @@
         <div class="popup__container">
             <button aria-label="Закрыть" class="popup__close" id="close-add" type="button"></button>
             <h2 class="popup__title">Новое место</h2>
-            <form class="popup__form" name="form-add">
+            <form class="popup__form" name="form-add" id="addForm">
                 <input class="popup__text-field popup__name"
                        id="title-popup"
                        maxlength="30"
@@ -113,8 +113,6 @@
             </div>
         </li>
     </template>
-    <script src="scripts/initial-сards.js"></script>
-    <script src="scripts/index.js"></script>
-    <script src="scripts/validate.js"></script>
+    <script type="module" src="./scripts/index.js"></script>
 </body>
 </html>
