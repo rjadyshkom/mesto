@@ -49,7 +49,7 @@ function handleCardFormSubmit(event) {
     elementsContainer.prepend(addCard.generateCard());
     closePopup(popupAdd);
     event.target.reset();
-    validationAdd.enableFormsValidation();
+    validationAdd.toggleButtonState();
 }
 
 export const closePopupByEsc = function (evt) {

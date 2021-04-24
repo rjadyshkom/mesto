@@ -28,22 +28,12 @@ export default class FormValidator {
         }
     }
 
-    _toggleButtonState() {
-        if (this._hasInvalidInput()) {
-            this._submitButton.classList.add(this._config.inactiveButtonClass);
-            this._submitButton.setAttribute('disabled', true);
-        } else {
-            this._submitButton.classList.remove(this._config.inactiveButtonClass);
-            this._submitButton.removeAttribute('disabled');
-        }
-    }
-
     _setEventListeners() {
-        this._toggleButtonState();
+        this.toggleButtonState();
         this._inputsArray.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
                 this._checkInputValidity(inputElement);
-                this._toggleButtonState();
+                this.toggleButtonState();
             });
         });
     }
@@ -53,6 +43,17 @@ export default class FormValidator {
             return !inputElement.validity.valid;
         })
     }
+
+    toggleButtonState() { // метод переехал в публичные, так как согласно комментарию, он вызывается в handleCardFormSubmit();
+        if (this._hasInvalidInput()) {
+            this._submitButton.classList.add(this._config.inactiveButtonClass);
+            this._submitButton.setAttribute('disabled', true);
+        } else {
+            this._submitButton.classList.remove(this._config.inactiveButtonClass);
+            this._submitButton.removeAttribute('disabled');
+        }
+    }
+
 
     enableFormsValidation() {
         this._setEventListeners();
