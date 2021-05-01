@@ -9,11 +9,7 @@
     line-height: 17px;
     font-size: 14px;
     min-height: 27px;
-    transition: border-bottom-color .2s ease-in-out;
-}
-
-.popup__text-field:hover {
-    border-bottom: 1px solid #007DFF;
+    transition: all .3s ease-in-out;
 }
 
 .popup__text-field:focus {
