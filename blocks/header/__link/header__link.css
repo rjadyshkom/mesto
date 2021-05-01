@@ -1,0 +1,12 @@
+.header__link {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    outline: none;
+    display: inline-block;
+    transition: opacity .3s ease-in-out;
+}
+
+.header__link:hover {
+    opacity: .5;
+}

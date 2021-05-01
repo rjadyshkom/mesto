@@ -18,6 +18,7 @@
 
 .popup__text-field:focus {
     border-bottom: 1px solid #007DFF;
+    color: #007DFF;
 }
 
 .popup__text-field::-webkit-input-placeholder,
