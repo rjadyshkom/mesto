@@ -9,7 +9,6 @@
     line-height: 17px;
     font-size: 14px;
     min-height: 27px;
-    transition: all .3s ease-in-out;
 }
 
 .popup__text-field:focus {

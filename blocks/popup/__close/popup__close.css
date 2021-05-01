@@ -11,11 +11,7 @@
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
-    -webkit-transition: opacity .3s ease-in-out;
-    -moz-transition: opacity .3s ease-in-out;
-    -o-transition: opacity .3s ease-in-out;
-    -ms-transition: opacity .3s ease-in-out;
-    transition: opacity .3s ease-in-out;
+
     cursor: pointer;
     width: 40px;
     height: 40px;
