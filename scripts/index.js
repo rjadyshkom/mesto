@@ -1,6 +1,7 @@
 import {cardData} from './cardData.js'
 import Card from './Card.js'
 import FormValidator from "./FormValidator.js";
+import Section from "./Section.js";
 
 const rootContainer = document.querySelector('.root');
 const popupsArray = document.querySelectorAll('.popup');
@@ -118,8 +119,16 @@ buttonAddClose.addEventListener('click', () => closePopup(popupAdd));
 popupEdit.addEventListener('submit', handleProfileFormSubmit);
 popupAdd.addEventListener('submit', handleCardFormSubmit);
 
-cardData.forEach((item) => {
-    const card = new Card(item, '#element-template');
-    const cardElement = card.generateCard();
-    document.querySelector('.elements__inner').append(cardElement);
-});
+const defaultCards = new Section({
+    items: cardData,
+    renderer: items => {
+        const newCard = new Card(
+            items,
+            '#element-template'
+        );
+
+        defaultCards.addItem(newCard.generateCard());
+    }
+}, '.elements__inner');
+
+defaultCards.renderItems();
