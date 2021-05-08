@@ -1,10 +1,11 @@
+import Section from "./Section.js";
 import {cardData} from './cardData.js'
 import Card from './Card.js'
+import PopupWithImage from "./PopupWithImage.js";
 import FormValidator from "./FormValidator.js";
-import Section from "./Section.js";
 
 const rootContainer = document.querySelector('.root');
-const popupsArray = document.querySelectorAll('.popup');
+/*const popupsArray = document.querySelectorAll('.popup');*/
 const buttonEdit = document.querySelector('.profile__edit');
 const buttonClose = document.querySelector('.profile__add');
 const buttonEditClose = document.querySelector('#close-edit');
@@ -21,10 +22,10 @@ const inputLink = document.querySelector('#link-popup');
 const formEdit = document.querySelector('#editForm');
 const formAdd = document.querySelector('#addForm');
 
-export const lightbox = document.querySelector('.lightbox');
+/*export const lightbox = document.querySelector('.lightbox');
 export const lightboxImage = document.querySelector('.lightbox__image');
 export const closeLightboxButton = document.querySelector('.lightbox__button-close');
-export const lightboxCaption = document.querySelector('.lightbox__caption');
+export const lightboxCaption = document.querySelector('.lightbox__caption');*/
 
 const formConfig = {
     formSelector: '.popup__form',
@@ -60,13 +61,13 @@ export const closePopupByEsc = function (evt) {
     }
 };
 
-popupsArray.forEach(element => {
+/*popupsArray.forEach(element => {
     element.addEventListener('click', function (evt) {
         if (evt.target.classList.contains('popup_opened')) {
             closePopup(element);
         }
     });
-});
+});*/
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
@@ -119,12 +120,15 @@ buttonAddClose.addEventListener('click', () => closePopup(popupAdd));
 popupEdit.addEventListener('submit', handleProfileFormSubmit);
 popupAdd.addEventListener('submit', handleCardFormSubmit);
 
+const lightbox = new PopupWithImage('.lightbox');
+
 const defaultCards = new Section({
     items: cardData,
     renderer: items => {
         const newCard = new Card(
             items,
-            '#element-template'
+            '#element-template',
+            lightbox.open
         );
 
         defaultCards.addItem(newCard.generateCard());
@@ -132,3 +136,5 @@ const defaultCards = new Section({
 }, '.elements__inner');
 
 defaultCards.renderItems();
+
+lightbox.setEventListeners();

@@ -1,18 +1,10 @@
-import {
-    closeLightboxButton,
-    closePopupByEsc,
-    disableScroll,
-    enableScroll,
-    lightbox,
-    lightboxCaption,
-    lightboxImage
-} from "./index.js";
-
 export default class Card {
-    constructor(data, cardSelector) {
+    constructor(data, cardSelector, handleCardClick) {
         this._cardImage = data.link;
         this._cardTitle = data.name;
         this._cardSelector = cardSelector;
+        this._handleCardClick = handleCardClick;
+        this.data = data;
     }
 
     _getTemplate() {
@@ -33,42 +25,38 @@ export default class Card {
         this._element = null;
     }
 
-    _setEventListeners() {
-        this._element.querySelector('.element__like').addEventListener('click', () => {
-            this._handleLikeCard();
-        });
-
-        this._element.querySelector('.element__trash').addEventListener('click', () => {
-            this._handleTrashCard();
-        });
-
-        this._element.querySelector('.element__image').addEventListener('click', () => {
-            this._handleOpenLightbox();
-        });
-
-        closeLightboxButton.addEventListener('click', () => {
-            this._handleCloseLightbox();
-        })
+    _setEventListeners = () => {
+        this._element.querySelector('.element__like').addEventListener('click', () => this._handleLikeCard());
+        this._element.querySelector('.element__trash').addEventListener('click', () => this._handleTrashCard());
+        this._element.querySelector('.element__image').addEventListener('click', () => this._handleCardClick(this.data));
     }
 
-    _handleOpenLightbox() {
-        lightboxImage.src = this._cardImage;
-        lightboxCaption.textContent = this._cardTitle;
-        lightbox.classList.add('popup_opened');
-        document.addEventListener('keydown', closePopupByEsc);
-        disableScroll();
-    }
+    /*        this._element.querySelector('.element__image').addEventListener('click', () => {
+                this._handleOpenLightbox();
+            });
 
-    _handleCloseLightbox() {
-        lightbox.classList.remove('popup_opened');
-        document.removeEventListener('keydown', closePopupByEsc);
-        enableScroll();
-    }
+            closeLightboxButton.addEventListener('click', () => {
+                this._handleCloseLightbox();
+            })*/
+
+
+    /*    _handleOpenLightbox() {
+            lightboxImage.src = this._cardImage;
+            lightboxCaption.textContent = this._cardTitle;
+            lightbox.classList.add('popup_opened');
+            document.addEventListener('keydown', closePopupByEsc);
+            disableScroll();
+        }
+
+        _handleCloseLightbox() {
+            lightbox.classList.remove('popup_opened');
+            document.removeEventListener('keydown', closePopupByEsc);
+            enableScroll();
+        }*/
 
     generateCard() {
         this._element = this._getTemplate();
         this._setEventListeners();
-
         this._element.querySelector('.element__image').src = this._cardImage;
         this._element.querySelector('.element__image').alt = this._cardTitle;
         this._element.querySelector('.element__title').textContent = this._cardTitle;
