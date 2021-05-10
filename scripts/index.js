@@ -23,7 +23,6 @@ const defaultCards = new Section({
         defaultCards.addItem(newCard.generateCard());
     }
 }, '.elements__inner');
-
 defaultCards.renderItems();
 
 const editProfile = new UserInfo('.profile__name', '.profile__about', profileConfig);

@@ -2,6 +2,7 @@ export default class Popup {
     constructor(popupSelector) {
         this._popup = document.querySelector(popupSelector);
         this._rootContainer = document.querySelector('.root');
+        this._scrollbarWidth = window.innerWidth - document.documentElement.offsetWidth;
     };
 
     _handleEscClose = (event) => {
@@ -21,9 +22,8 @@ export default class Popup {
     };
 
     _disableScroll() {
-        const scrollbarWidth = window.innerWidth - document.documentElement.offsetWidth;
         this._rootContainer.style.overflow = 'hidden';
-        this._rootContainer.style.paddingRight = `${scrollbarWidth}px`;
+        this._rootContainer.style.paddingRight = `${this._scrollbarWidth}px`;
     };
 
 
