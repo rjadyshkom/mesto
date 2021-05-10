@@ -17,14 +17,16 @@
 * Сборка проекта Webpack
 
 *Для демонстрации в режиме разработки*
+
 ```bash
 npm run build
 
 ```
 
 *Для сборки и автозапуска на локальном сервере*
+
 ```bash
 npm run dev
 ```
 
-[Ссылка на опубликованный сайт](https://rjadyshkom.github.io/mesto/)
+[Ссылка на опубликованный сайт](https://rjadyshkom.github.io/mesto/index.html)
