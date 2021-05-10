@@ -1,19 +1,15 @@
-import Section from "./Section.js";
 import {cardData} from './cardData.js'
+import {buttonAdd, buttonEdit, formAdd, formConfig, formEdit, profileConfig} from "./constants.js";
+import Section from "./Section.js";
 import Card from './Card.js'
 import PopupWithImage from "./PopupWithImage.js";
 import PopupWithForm from "./PopupWithForm.js";
 import UserInfo from "./UserInfo.js";
 import FormValidator from "./FormValidator.js";
-import {buttonAdd, buttonEdit, formAdd, formConfig, formEdit, profileConfig} from "./constants.js";
-
 
 const validationEdit = new FormValidator(formConfig, formEdit);
 const validationAdd = new FormValidator(formConfig, formAdd);
-
-
 const lightbox = new PopupWithImage('.lightbox');
-lightbox.setEventListeners();
 
 const defaultCards = new Section({
     items: cardData,
@@ -27,6 +23,7 @@ const defaultCards = new Section({
         defaultCards.addItem(newCard.generateCard());
     }
 }, '.elements__inner');
+
 defaultCards.renderItems();
 
 const editProfile = new UserInfo('.profile__name', '.profile__about', profileConfig);
@@ -38,9 +35,6 @@ const editProfilePopup = new PopupWithForm('.popup_type_edit', items => {
     validationEdit.toggleButtonState();
 });
 
-editProfilePopup.setEventListeners();
-
-
 const addCardPopup = new PopupWithForm('.popup_type_add', items => {
     items.name = items.title;
     delete items.title;
@@ -49,10 +43,11 @@ const addCardPopup = new PopupWithForm('.popup_type_add', items => {
     validationAdd.toggleButtonState();
 });
 
+lightbox.setEventListeners();
+editProfilePopup.setEventListeners();
 addCardPopup.setEventListeners();
 
-
-buttonEdit.addEventListener('click', () => editProfilePopup.open());
+buttonEdit.addEventListener('click', () => editProfilePopup.open(editProfile.setInputValues()));
 buttonAdd.addEventListener('click', () => addCardPopup.open());
 
 validationEdit.enableFormsValidation();
