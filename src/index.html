@@ -8,22 +8,21 @@
     <meta content="Проект Mesto, это интерактивная страница, куда можно добавлять фотографии, удалять их и ставить лайки."
           name="description">
     <meta name="theme-color" content="black">
-    <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
-    <link href="./pages/index.css" rel="stylesheet">
+    <link rel="icon" href="<%=require('./images/favicon.ico')%>" type="image/x-icon">
     <title>Mesto</title>
 </head>
 <body class="root">
     <div class="root__container">
         <header class="header">
-            <a href="/mesto/" class="header__link"><img alt="Логотип проекта Mesto"
-                                                        class="header__logo"
-                                                        src="./images/header-logo.svg"></a>
+            <a href="/mesto" class="header__link"><img alt="Логотип проекта Mesto"
+                                                       class="header__logo"
+                                                       src="<%=require('./images/header-logo.svg')%>"></a>
         </header>
 
         <main class="main">
             <section class="profile">
                 <div class="profile__author">
-                    <img alt="Аватар автора" class="profile__avatar" src="./images/profile-avatar.jpg">
+                    <img alt="Аватар автора" class="profile__avatar" src="<%=require('./images/profile-avatar.jpg')%>">
                     <div class="profile__info">
                         <div class="profile__inner">
                             <h1 class="profile__name">Бильбо Бэггинс</h1>
@@ -119,6 +118,5 @@
             </div>
         </li>
     </template>
-    <script type="module" src="./scripts/index.js"></script>
 </body>
 </html>
