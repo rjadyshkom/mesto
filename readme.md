@@ -29,4 +29,4 @@ npm run build
 npm run dev
 ```
 
-[Ссылка на опубликованный сайт](https://rjadyshkom.github.io/mesto/index.html)
+[Ссылка на опубликованный сайт](https://rjadyshkom.github.io/mesto/)
