@@ -11,6 +11,14 @@
     "type": "git",
     "url": "git+https://github.com/rjadyshkom/mesto.git"
   },
+  "keywords": [
+    "webpack",
+    "bem",
+    "javascript",
+    "css",
+    "oop",
+    "html"
+  ],
   "author": "Sergey Mitrofanov",
   "license": "",
   "bugs": {
