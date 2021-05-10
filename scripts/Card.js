@@ -31,29 +31,6 @@ export default class Card {
         this._element.querySelector('.element__image').addEventListener('click', () => this._handleCardClick(this.data));
     }
 
-    /*        this._element.querySelector('.element__image').addEventListener('click', () => {
-                this._handleOpenLightbox();
-            });
-
-            closeLightboxButton.addEventListener('click', () => {
-                this._handleCloseLightbox();
-            })*/
-
-
-    /*    _handleOpenLightbox() {
-            lightboxImage.src = this._cardImage;
-            lightboxCaption.textContent = this._cardTitle;
-            lightbox.classList.add('popup_opened');
-            document.addEventListener('keydown', closePopupByEsc);
-            disableScroll();
-        }
-
-        _handleCloseLightbox() {
-            lightbox.classList.remove('popup_opened');
-            document.removeEventListener('keydown', closePopupByEsc);
-            enableScroll();
-        }*/
-
     generateCard() {
         this._element = this._getTemplate();
         this._setEventListeners();
