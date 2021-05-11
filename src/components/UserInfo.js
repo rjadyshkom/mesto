@@ -16,10 +16,4 @@ export default class UserInfo {
         this._userName.textContent = name;
         this._userAbout.textContent = about;
     };
-
-    setInputValues = () => {
-        const newInputData = this.getUserInfo();
-        this._profileConfig.name.value = newInputData.name;
-        this._profileConfig.about.value = newInputData.about;
-    };
 }

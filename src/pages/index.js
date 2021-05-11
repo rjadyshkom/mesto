@@ -12,22 +12,26 @@ const validationEdit = new FormValidator(formConfig, formEdit);
 const validationAdd = new FormValidator(formConfig, formAdd);
 const lightbox = new PopupWithImage('.lightbox');
 
+function createCard(items) {
+    const newCard = new Card(
+        items,
+        '#element-template',
+        lightbox.open
+    );
+    return newCard.generateCard();
+}
+
 const defaultCards = new Section({
     items: cardData,
     renderer: items => {
-        const newCard = new Card(
-            items,
-            '#element-template',
-            lightbox.open
-        );
-
-        defaultCards.addItem(newCard.generateCard());
+        const card = createCard(items);
+        defaultCards.addItem(card);
     }
 }, '.elements__inner');
 
 defaultCards.renderItems();
 
-const editProfile = new UserInfo('.profile__name', '.profile__about', profileConfig);
+const editProfile = new UserInfo('.profile__name', '.profile__about');
 
 const editProfilePopup = new PopupWithForm('.popup_type_edit', items => {
     const item = {name: items.name, about: items.about};
@@ -48,7 +52,12 @@ lightbox.setEventListeners();
 editProfilePopup.setEventListeners();
 addCardPopup.setEventListeners();
 
-buttonEdit.addEventListener('click', () => editProfilePopup.open(editProfile.setInputValues()));
+buttonEdit.addEventListener('click', () => {
+    const userData = editProfile.getUserInfo();
+    profileConfig.name.value = userData.name;
+    profileConfig.about.value = userData.about;
+    editProfilePopup.open();
+});
 buttonAdd.addEventListener('click', () => addCardPopup.open());
 
 validationEdit.enableFormsValidation();
