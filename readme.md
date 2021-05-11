@@ -15,6 +15,7 @@
 * Получение и подстановка значений (JavaScript)
 * Работа со слушателями событий (JavaScript)
 * Сборка проекта Webpack
+* Минификация
 
 *Для демонстрации в режиме разработки*
 
@@ -29,4 +30,4 @@ npm run build
 npm run dev
 ```
 
-[Ссылка на опубликованный сайт](https://rjadyshkom.github.io/mesto/)
+[Ссылка на опубликованный сайт](https://rjadyshkom.github.io/mesto)
