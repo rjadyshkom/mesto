@@ -11,7 +11,7 @@ export default class Section {
     };
 
     renderItems() {
-        this._initialArray.forEach(item => {
+        this._initialArray.reverse().forEach(item => {
             this.renderer(item);
         });
     };
