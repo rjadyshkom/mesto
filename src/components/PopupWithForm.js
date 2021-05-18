@@ -5,7 +5,8 @@ export default class PopupWithForm extends Popup {
         super(popupSelector);
         this._formSelector = this._popup.querySelector('.popup__form');
         this.formSubmitHandler = formSubmitHandler;
-    }
+        this._submit = document.querySelector('.popup__submit');
+    };
 
     _getInputValues() {
         const inputs = this._formSelector.getElementsByClassName('popup__text-field');
@@ -24,9 +25,17 @@ export default class PopupWithForm extends Popup {
         });
     };
 
-
     close() {
         super.close();
         this._formSelector.reset();
+    };
+
+    showSavingText(isSaving) {
+        if (isSaving) {
+            this._submit.textContent = 'Сохранение...';
+        } else {
+            this._submit.textContent = 'Сохранить';
+            this.close()
+        }
     };
 }
