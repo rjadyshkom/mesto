@@ -8,7 +8,7 @@
 .main{flex:1}
 .profile{align-items:center;display:flex;justify-content:space-between;margin:0;padding:40px 0 0}@media screen and (max-width:768px){.profile{flex-direction:column;flex-wrap:wrap;justify-content:center;padding:42px 0 0}}
 .profile__author{display:flex}@media screen and (max-width:768px){.profile__author{align-items:center;flex-direction:column;flex-wrap:wrap}}
-.profile__avatar{border-radius:100px;height:120px;width:120px}
+.profile__avatar{border-radius:100px;height:120px;-o-object-fit:cover;object-fit:cover;width:120px}
 .profile__info{display:flex;flex-direction:column;justify-content:center;margin:0 0 0 30px}@media screen and (max-width:768px){.profile__info{margin:26px 0 0}}
 .profile__inner{align-items:center;display:flex;justify-content:space-between}@media screen and (max-width:768px){.profile__inner{margin-right:-18px}}@media screen and (max-width:380px){.profile__inner{margin:0}}
 .profile__name{font-size:42px;font-weight:500;line-height:48px;margin:0;max-width:330px;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:1024px){.profile__name{font-size:36px;line-height:42px}}@media screen and (max-width:768px){.profile__name{font-size:27px;line-height:33px;text-align:center}}
