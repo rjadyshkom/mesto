@@ -1,0 +1,32 @@
+.profile__edit-avatar {
+    margin: 0;
+    padding: 0;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    border-radius: 0;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center center;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+    border: none;
+    position: relative;
+}
+
+.profile__edit-avatar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .8) url(../../../images/profile-edit-avatar-button.svg) no-repeat center center;
+    background-size: 26px 26px;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+}
+
+.profile__edit-avatar:hover::after {
+    opacity: 1;
+}

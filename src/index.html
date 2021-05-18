@@ -22,7 +22,10 @@
         <main class="main">
             <section class="profile">
                 <div class="profile__author">
-                    <img alt="Аватар автора" class="profile__avatar" src="<%=require('./images/profile-avatar.jpg')%>">
+                    <button class="profile__edit-avatar">
+                        <img alt="Аватар автора" class="profile__avatar"
+                             src="<%=require('./images/profile-avatar.jpg')%>">
+                    </button>
                     <div class="profile__info">
                         <div class="profile__inner">
                             <h1 class="profile__name">Бильбо Бэггинс</h1>
@@ -44,6 +47,22 @@
         <footer class="footer">
             <p class="footer__copyright">© 2021 Сергей Митрофанов</p>
         </footer>
+    </div>
+    <div class="popup popup_type_edit-avatar">
+        <div class="popup__container">
+            <button aria-label="Закрыть" class="popup__close" id="close-edit-avatar" type="button"></button>
+            <h2 class="popup__title">Обновить аватар</h2>
+            <form class="popup__form" name="form-edit-avatar" id="editAvatarForm">
+                <input class="popup__text-field popup__edit-avatar"
+                       id="link-avatar-popup"
+                       name="avatarLink"
+                       placeholder="Ссылка на новый аватар"
+                       required
+                       type="url">
+                <span class="link-avatar-popup-error popup__error"></span>
+                <button class="popup__submit" type="submit">Сохранить</button>
+            </form>
+        </div>
     </div>
 
     <div class="popup popup_type_edit">
