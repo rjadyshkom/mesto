@@ -47,4 +47,14 @@ export default class Api {
                 return this._checkServerResponse(res);
             })
     };
+
+    getInitialCards() {
+        return fetch(`${this._baseUrl}cards`, {
+            method: 'GET',
+            headers: this._headers
+        })
+            .then((res) => {
+                return this._checkServerResponse(res);
+            });
+    };
 }

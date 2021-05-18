@@ -1,5 +1,4 @@
 import './index.css';
-import {cardData} from '../utilities/cardData.js'
 import {
     buttonAdd,
     buttonEdit,
@@ -26,12 +25,13 @@ const api = new Api({
     }
 });
 
-Promise.all([api.getUserInfo()])
-    .then(([userData]) => {
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+    .then(([userData, userCard]) => {
         handleUserInfo(userData);
+        handleUserCards(userCard)
     })
     .catch((err) => {
-        console.log(err);
+        console.log(`Вот что произошло: ${err}`);
     });
 
 const userInfo = new UserInfo('.profile__name', '.profile__about', '.profile__avatar');
@@ -40,7 +40,7 @@ const validationAdd = new FormValidator(formConfig, formAdd);
 const validationAvatar = new FormValidator(formConfig, formAvatar);
 const lightbox = new PopupWithImage('.lightbox');
 
-const avatarEdit = new PopupWithForm('.popup_type_edit-avatar', (data) => {
+const avatarEdit = new PopupWithForm('.popup_type_edit-avatar', data => {
     avatarEdit.showSavingText(true);
 
     function handleLoadUserAvatar(item) {
@@ -55,20 +55,9 @@ const avatarEdit = new PopupWithForm('.popup_type_edit-avatar', (data) => {
     });
 });
 
-
-const defaultCards = new Section({
-    items: cardData,
-    renderer: items => {
-        const card = createCard(items);
-        defaultCards.addItem(card);
-    }
-}, '.elements__inner');
-
-defaultCards.renderItems();
-
 const profileEdit = new UserInfo('.profile__name', '.profile__about');
 
-const profileEditPopup = new PopupWithForm('.popup_type_edit', (values) => {
+const profileEditPopup = new PopupWithForm('.popup_type_edit', values => {
 
     function HandleSetUserInfo(data) {
         userInfo.setUserInfo(data);
@@ -85,7 +74,7 @@ const profileEditPopup = new PopupWithForm('.popup_type_edit', (values) => {
 const cardAddPopup = new PopupWithForm('.popup_type_add', items => {
     items.name = items.title;
     delete items.title;
-    defaultCards.renderer(items);
+    handleUserCards.renderer(items);
     cardAddPopup.close();
     validationAdd.toggleButtonState();
 });
@@ -95,13 +84,19 @@ function handleUserInfo(data) {
     userInfo.setUserAvatar(data.avatar);
 }
 
-function createCard(items) {
-    const newCard = new Card(
-        items,
-        '#element-template',
-        lightbox.open
-    );
-    return newCard.generateCard();
+function createCard(item) {
+    return new Card(item, '#element-template', lightbox.open);
+}
+
+function handleUserCards(userCardsData) {
+    const cards = new Section({
+        items: userCardsData,
+        renderer: (item) => {
+            const card = createCard(item);
+            cards.addItem(card.generateCard());
+        }
+    }, '.elements__inner');
+    cards.renderItems();
 }
 
 buttonEdit.addEventListener('click', () => {
