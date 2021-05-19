@@ -81,4 +81,24 @@ export default class Api {
                 return this._checkServerResponse(res);
             })
     };
+
+    setLike(id) {
+        return fetch(`${this._baseUrl}cards/likes/${id}`, {
+            method: 'PUT',
+            headers: this._headers
+        })
+            .then((res) => {
+                this._checkServerResponse(res);
+            })
+    };
+
+    removeLike(id) {
+        return fetch(`${this._baseUrl}cards/likes/${id}`, {
+            method: 'DELETE',
+            headers: this._headers
+        })
+            .then((res) => {
+                return this._checkServerResponse(res);
+            })
+    };
 }

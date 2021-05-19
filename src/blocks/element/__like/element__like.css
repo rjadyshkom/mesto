@@ -4,7 +4,7 @@
     background-image: url(../../../images/elements-like-button.svg);
     background-size: 24px 19px;
     justify-self: end;
-    margin: 0 0 0 18px;
+    margin: 0;
     padding: 0;
     flex-shrink: 0;
     box-sizing: border-box;
@@ -23,6 +23,7 @@
     -ms-transition: opacity .3s ease-in-out;
     transition: opacity .3s ease-in-out;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .element__like:active {

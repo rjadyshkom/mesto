@@ -99,7 +99,6 @@ function handleUserInfo(data) {
 
 function createCard(item) {
     const newCard = new Card(item, '#element-template', lightbox.open, (confirmTrash) => {
-        console.log(item)
         confirm.trashAfterSubmit(() => {
             api.trashCard(item._id)
                 .then(res => {
@@ -112,10 +111,24 @@ function createCard(item) {
                 });
         })
         confirm.open(confirmTrash);
+    }, (item, isLiked) => {
+        if (isLiked) {
+            api.removeLike(item.data._id)
+                .then((res) => newCard.renderLikes(res))
+                .catch((err) => {
+                    console.log(err)
+                });
+        } else {
+            api.setLike(item.data._id)
+                .then((res) => newCard.renderLikes(res))
+                .catch((err) => {
+                    console.log(err)
+                });
+        }
     });
+
     return newCard;
 }
-
 
 function handleUserCards(userCardsData) {
     cardsHandler = new Section({
