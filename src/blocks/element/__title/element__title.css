@@ -7,5 +7,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    text-transform: capitalize;
+}
+
+.element__title::first-letter {
+    text-transform: uppercase;
 }
