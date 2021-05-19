@@ -3,6 +3,7 @@ import {
     buttonAdd,
     buttonEdit,
     buttonEditAvatar,
+    buttonTrash,
     formAdd,
     formAvatar,
     formConfig,
@@ -100,6 +101,10 @@ function handleUserInfo(data) {
 
 function createCard(item) {
     const newCard = new Card(item, '#element-template', lightbox.open, (confirmTrash) => {
+        buttonTrash.textContent = 'Да'; /* Если сначала добавить карточку, а затем её удалить - текст кнопки наследуется
+                                           из публичного метода showSavingText класса PopupWithForm (Сохранить, вместо Да)
+                                           Лёгкий фикс без возни с переносом и расширением метода. */
+
         confirm.trashAfterSubmit(() => {
             api.trashCard(item._id)
                 .then(res => {

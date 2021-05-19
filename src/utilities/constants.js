@@ -1,6 +1,7 @@
 export const buttonEdit = document.querySelector('.profile__edit');
 export const buttonEditAvatar = document.querySelector('.profile__edit-avatar');
 export const buttonAdd = document.querySelector('.profile__add');
+export const buttonTrash = document.querySelector('#trash-button');
 export const formEdit = document.querySelector('#editForm');
 export const formAdd = document.querySelector('#addForm');
 export const formAvatar = document.querySelector('#editAvatarForm');
