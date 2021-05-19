@@ -27,7 +27,7 @@
 @import url(../blocks/element/__wrapper/element__wrapper.css);
 @import url(../blocks/element/__like/_active/element__like_active.css);
 @import url(../blocks/element/__trash/element__trash.css);
-@import url(../blocks/element/__trash/_hidden/element__trash_hidden.css);
+@import url(../blocks/element/__trash/_visible/element__trash_visible.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/popup/popup.css);

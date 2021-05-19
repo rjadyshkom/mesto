@@ -1,6 +1,6 @@
 export default class Card {
-    constructor(data, cardSelector, handleCardClick, handleCardTrash, handleCardLike) {
-        this._myId = '15c63f3000d63ae57ad3fb5f'; // костыль ручной работы.
+    constructor(data, cardSelector, handleCardClick, handleCardTrash, handleCardLike, myId) {
+        this._myId = myId;
         this._cardImage = data.link;
         this._cardTitle = data.name;
         this._cardAuthor = data.owner;
@@ -47,8 +47,8 @@ export default class Card {
         this._titleElement.textContent = this._cardTitle;
         this._counterContainer.textContent = this._likesAmount;
 
-        if (this._myId !== this._cardAuthor._id) {
-            this._trashButton.classList.add('element__trash_hidden');
+        if (this._myId === this._cardAuthor._id) {
+            this._trashButton.classList.add('element__trash_visible');
         }
 
         if (this._likes.some(likeAuthor => likeAuthor._id === this._myId)) {

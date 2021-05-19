@@ -126,7 +126,7 @@ function createCard(item) {
                     console.log(err)
                 });
         }
-    });
+    }, '15c63f3000d63ae57ad3fb5f');  // после 12 часов работы над практикой, решение не кажется таким уж безумным =)
 
     return newCard;
 }
