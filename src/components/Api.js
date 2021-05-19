@@ -71,4 +71,14 @@ export default class Api {
                 return this._checkServerResponse(res);
             })
     };
+
+    trashCard(id) {
+        return fetch(`${this._baseUrl}cards/${id}`, {
+            method: 'DELETE',
+            headers: this._headers
+        })
+            .then((res) => {
+                return this._checkServerResponse(res);
+            })
+    };
 }

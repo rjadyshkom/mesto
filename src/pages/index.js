@@ -13,9 +13,12 @@ import Section from "../components/Section.js";
 import Card from '../components/Card.js'
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithConfirm from "../components/popupWithConfirm.js";
 import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
 import Api from "../components/Api.js";
+
+let cardsHandler = {};
 
 const api = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-24/',
@@ -31,19 +34,16 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
         handleUserCards(userCard)
     })
     .catch((err) => {
-        console.log(`Вот что произошло. ${err}`);
+        console.log(`Вот, что произошло. ${err}`);
     });
 
-let cardBox = {};
-// Выносил переменную в constants.js, но вебпак при сборке забирал её позже функции, в которой она использована.
-// Получалось следующее: "TypeError: _utilities_constants_js__WEBPACK_IMPORTED_MODULE_1__.cardBox.addItem is not a function"
-// Не сообразил, как настроить вебпак так, чтобы он сначала забирал файл с константами.
 
 const userInfo = new UserInfo('.profile__name', '.profile__about', '.profile__avatar');
 const validationEdit = new FormValidator(formConfig, formEdit);
 const validationAdd = new FormValidator(formConfig, formAdd);
 const validationAvatar = new FormValidator(formConfig, formAvatar);
 const lightbox = new PopupWithImage('.lightbox');
+const confirm = new PopupWithConfirm('.popup_type_confirm-trash');
 
 const avatarEdit = new PopupWithForm('.popup_type_edit-avatar', data => {
     avatarEdit.showSavingText(true);
@@ -81,7 +81,7 @@ const cardAddPopup = new PopupWithForm('.popup_type_add', items => {
 
     function handleAddingCard(item) {
         const card = createCard(item);
-        cardBox.addItem(card.generateCard());
+        cardsHandler.addItem(card.generateCard());
     }
 
     api.uploadNewCard(items).then((res) => handleAddingCard(res)).catch((err) => {
@@ -98,18 +98,34 @@ function handleUserInfo(data) {
 }
 
 function createCard(item) {
-    return new Card(item, '#element-template', lightbox.open);
+    const newCard = new Card(item, '#element-template', lightbox.open, (confirmTrash) => {
+        console.log(item)
+        confirm.trashAfterSubmit(() => {
+            api.trashCard(item._id)
+                .then(res => {
+                    newCard.handleTrashCard();
+                    confirm.close();
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        })
+        confirm.open(confirmTrash);
+    });
+    return newCard;
 }
 
+
 function handleUserCards(userCardsData) {
-    const cards = new Section({
+    cardsHandler = new Section({
         items: userCardsData,
         renderer: (item) => {
             const card = createCard(item);
-            cards.addItem(card.generateCard());
+            cardsHandler.addItem(card.generateCard());
         }
     }, '.elements__inner');
-    cards.renderItems();
+    cardsHandler.renderItems();
 }
 
 buttonEdit.addEventListener('click', () => {
@@ -126,6 +142,7 @@ lightbox.setEventListeners();
 profileEditPopup.setEventListeners();
 cardAddPopup.setEventListeners();
 avatarEdit.setEventListeners();
+confirm.setEventListeners();
 
 validationEdit.enableFormsValidation();
 validationAdd.enableFormsValidation();
