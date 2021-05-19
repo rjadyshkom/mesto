@@ -69,8 +69,13 @@ export default class Card {
         this._likeButton.classList.toggle('element__like_active');
     };
 
-    renderLikes() {
-        this._counterContainer.textContent = this._likesAmount;
+    likeAddition() {
+        this._counterContainer.textContent = this._likesAmount += 1;
+        this.setLike();
+    };
+
+    likeSubtraction() {
+        this._counterContainer.textContent = this._likesAmount -= 1;
         this.setLike();
     };
 }

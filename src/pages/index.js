@@ -63,6 +63,7 @@ const avatarEdit = new PopupWithForm('.popup_type_edit-avatar', data => {
 const profileEdit = new UserInfo('.profile__name', '.profile__about');
 
 const profileEditPopup = new PopupWithForm('.popup_type_edit', values => {
+    profileEditPopup.showSavingText(true);
 
     function HandleSetUserInfo(data) {
         userInfo.setUserInfo(data);
@@ -114,13 +115,13 @@ function createCard(item) {
     }, (item, isLiked) => {
         if (isLiked) {
             api.removeLike(item.data._id)
-                .then((res) => newCard.renderLikes(res))
+                .then((res) => newCard.likeSubtraction(res))
                 .catch((err) => {
                     console.log(err)
                 });
         } else {
             api.setLike(item.data._id)
-                .then((res) => newCard.renderLikes(res))
+                .then((res) => newCard.likeAddition(res))
                 .catch((err) => {
                     console.log(err)
                 });
