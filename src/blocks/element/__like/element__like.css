@@ -23,7 +23,6 @@
     -ms-transition: opacity .3s ease-in-out;
     transition: opacity .3s ease-in-out;
     cursor: pointer;
-    flex-shrink: 0;
 }
 
 .element__like:active {
