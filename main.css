@@ -37,7 +37,7 @@
 .popup__submit{appearance:none;-moz-appearance:none;-webkit-appearance:none;background-color:#000;background-position:50%;background-repeat:no-repeat;border-color:transparent;border-radius:2px;box-sizing:border-box;color:#fff;cursor:pointer;flex-shrink:0;font-size:18px;font-weight:400;line-height:22px;margin:48px 0 0;min-height:50px;outline:none;padding:0;transition:opacity .3s ease-in-out;width:100%}.popup__submit:hover{opacity:.8}.popup__submit:active{transform:scale(.95)}@media screen and (max-width:768px){.popup__submit{font-size:14px;line-height:17px;margin:45px 0 0;min-height:46px}}
 .popup__submit_disabled{background-color:transparent;border:1px solid #000;border-radius:2px;color:#000;opacity:.2}.popup__submit_disabled:hover{opacity:.2}
 .lightbox{background-color:rgba(0,0,0,.9);cursor:pointer}
-.lightbox__caption{color:#fff;font-size:12px;line-height:15px;margin:0;padding:0;text-transform:capitalize}.lightbox__caption:first-letter{text-transform:uppercase}
+.lightbox__caption{color:#fff;font-size:12px;line-height:15px;margin:0;padding:0}.lightbox__caption:first-letter{text-transform:uppercase}
 .lightbox__image{max-height:75vh;max-width:75vw;-o-object-fit:contain;object-fit:contain;-o-object-position:center center;object-position:center center}@media screen and (max-width:600px){.lightbox__image{max-height:100%;max-width:100%}}
 .lightbox__inner{cursor:default;position:relative}@media screen and (max-width:600px){.lightbox__inner{min-width:0;width:calc(100% - 38px)}}
 .popup_opened{opacity:1;visibility:visible}
