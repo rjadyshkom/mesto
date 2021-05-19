@@ -31,8 +31,13 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
         handleUserCards(userCard)
     })
     .catch((err) => {
-        console.log(`Вот что произошло: ${err}`);
+        console.log(`Вот что произошло. ${err}`);
     });
+
+let cardBox = {};
+// Выносил переменную в constants.js, но вебпак при сборке забирал её позже функции, в которой она использована.
+// Получалось следующее: "TypeError: _utilities_constants_js__WEBPACK_IMPORTED_MODULE_1__.cardBox.addItem is not a function"
+// Не сообразил, как настроить вебпак так, чтобы он сначала забирал файл с константами.
 
 const userInfo = new UserInfo('.profile__name', '.profile__about', '.profile__avatar');
 const validationEdit = new FormValidator(formConfig, formEdit);
@@ -72,11 +77,19 @@ const profileEditPopup = new PopupWithForm('.popup_type_edit', values => {
 });
 
 const cardAddPopup = new PopupWithForm('.popup_type_add', items => {
-    items.name = items.title;
-    delete items.title;
-    handleUserCards.renderer(items);
-    cardAddPopup.close();
-    validationAdd.toggleButtonState();
+    cardAddPopup.showSavingText(true);
+
+    function handleAddingCard(item) {
+        const card = createCard(item);
+        cardBox.addItem(card.generateCard());
+    }
+
+    api.uploadNewCard(items).then((res) => handleAddingCard(res)).catch((err) => {
+        console.log(err)
+    }).finally(() => {
+        cardAddPopup.showSavingText(false);
+        validationAdd.toggleButtonState();
+    });
 });
 
 function handleUserInfo(data) {

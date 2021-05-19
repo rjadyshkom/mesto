@@ -5,7 +5,7 @@ export default class Card {
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
         this.data = data;
-    }
+    };
 
     _getTemplate() {
         return document
@@ -13,22 +13,22 @@ export default class Card {
             .content
             .querySelector('.element')
             .cloneNode(true);
-    }
+    };
 
     _handleLikeCard() {
         this._element.querySelector('.element__like').classList.toggle('element__like_active');
-    }
+    };
 
     _handleTrashCard() {
         this._element.remove();
         this._element = null;
-    }
+    };
 
     _setEventListeners = () => {
         this._likeButton.addEventListener('click', () => this._handleLikeCard());
         this._trashButton.addEventListener('click', () => this._handleTrashCard());
         this._imageElement.addEventListener('click', () => this._handleCardClick(this.data));
-    }
+    };
 
     generateCard = () => {
         this._element = this._getTemplate();
@@ -41,5 +41,5 @@ export default class Card {
         this._titleElement.textContent = this._cardTitle;
         this._setEventListeners();
         return this._element;
-    }
+    };
 }
