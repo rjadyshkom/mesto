@@ -26,6 +26,8 @@
     position: absolute;
     top: 18px;
     right: 15px;
+    visibility: visible;
+    opacity: 1;
 }
 
 .element__trash:active {
