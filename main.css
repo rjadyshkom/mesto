@@ -21,7 +21,7 @@
 .element{display:flex;flex-direction:column;margin:0;padding:0;position:relative}
 .element__image{border-radius:10px 10px 0 0;cursor:pointer;height:282px;-o-object-fit:cover;object-fit:cover;-o-object-position:center center;object-position:center center;width:100%}
 .element__inner{align-items:center;background-color:#fff;border-radius:0 0 10px 10px;box-sizing:border-box;color:#000;display:grid;grid-template-columns:85% 15%;padding:20px 15px 20px 21px}
-.element__title{font-size:24px;font-weight:900;line-height:29px;margin:0;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}.element__title:first-letter{text-transform:uppercase}
+.element__title{font-size:24px;font-weight:900;line-height:29px;margin:0;overflow:hidden;padding:0 18px 0 0;text-overflow:ellipsis;white-space:nowrap}.element__title:first-letter{text-transform:uppercase}
 .element__like{appearance:none;-moz-appearance:none;-webkit-appearance:none;background-color:transparent;background-image:url(e2683c1774c9bdf7d088.svg);background-position:50%;background-repeat:no-repeat;background-size:24px 19px;border-color:transparent;border-radius:0;box-sizing:border-box;cursor:pointer;flex-shrink:0;height:19px;justify-self:end;margin:0;outline:none;padding:0;transition:opacity .3s ease-in-out;width:24px}.element__like:active{transform:scale(.95)}.element__like:hover{opacity:.5}
 .element__counter{display:flex;font-size:13px;justify-self:flex-end;line-height:16px;margin:3px 0 0;padding:0}
 .element__wrapper{align-items:center;display:flex;flex-direction:column;justify-content:space-between;margin:0;padding:0}
