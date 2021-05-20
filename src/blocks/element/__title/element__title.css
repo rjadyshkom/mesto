@@ -1,6 +1,6 @@
 .element__title {
     margin: 0;
-    padding: 0;
+    padding: 0 18px 0 0;
     line-height: 29px;
     font-size: 24px;
     font-weight: 900;
