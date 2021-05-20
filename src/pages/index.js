@@ -105,7 +105,6 @@ function handleUserInfo(data) {
 
 function createCard(item) {
     const newCard = new Card(item, '#element-template', lightbox.open, (confirmTrash) => {
-        buttonTrash.textContent = 'Да';
         confirm.trashAfterSubmit(() => {
             api.trashCard(item._id)
                 .then(res => {
@@ -118,6 +117,7 @@ function createCard(item) {
                 });
         })
         confirm.open(confirmTrash);
+        buttonTrash.textContent = 'Да';
     }, (item, isLiked) => {
         console.log(item)
         if (isLiked) {
