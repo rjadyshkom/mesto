@@ -1,6 +1,6 @@
 export default class Card {
     constructor(data, cardSelector, handleCardClick, handleCardTrash, handleCardLike, myId) {
-        this._myId = myId;
+        this.data = data;
         this._cardImage = data.link;
         this._cardTitle = data.name;
         this._cardAuthor = data.owner;
@@ -10,7 +10,8 @@ export default class Card {
         this._handleCardClick = handleCardClick;
         this._handleCardTrash = handleCardTrash;
         this.handleCardLike = handleCardLike;
-        this.data = data;
+        this._myId = myId;
+        console.log(this._myId)
     };
 
     _getTemplate() {
@@ -52,7 +53,7 @@ export default class Card {
         }
 
         if (this._likes.some(likeAuthor => likeAuthor._id === this._myId)) {
-            this.setLike();
+            this._likeButton.classList.add('element__like_active');
         }
 
         this._setEventListeners();
@@ -65,17 +66,17 @@ export default class Card {
         this._element = null;
     };
 
-    setLike() {
+    toggleLike() {
         this._likeButton.classList.toggle('element__like_active');
     };
 
     likeAddition() {
         this._counterContainer.textContent = this._likesAmount += 1;
-        this.setLike();
+        this.toggleLike();
     };
 
     likeSubtraction() {
         this._counterContainer.textContent = this._likesAmount -= 1;
-        this.setLike();
+        this.toggleLike();
     };
 }

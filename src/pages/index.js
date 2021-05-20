@@ -57,6 +57,7 @@ const avatarEdit = new PopupWithForm('.popup_type_edit-avatar', data => {
         console.log(err)
     }).finally(() => {
         avatarEdit.showSavingText(false);
+        avatarEdit.close();
         validationAvatar.toggleButtonState();
     });
 });
@@ -66,14 +67,15 @@ const profileEdit = new UserInfo('.profile__name', '.profile__about');
 const profileEditPopup = new PopupWithForm('.popup_type_edit', values => {
     profileEditPopup.showSavingText(true);
 
-    function HandleSetUserInfo(data) {
+    function handleSetUserInfo(data) {
         userInfo.setUserInfo(data);
     }
 
-    api.setUserInfo(values).then((res) => HandleSetUserInfo(res)).catch((err) => {
+    api.setUserInfo(values).then((res) => handleSetUserInfo(res)).catch((err) => {
         console.log(err);
     }).finally(() => {
         profileEditPopup.showSavingText(false);
+        profileEditPopup.close();
         validationEdit.toggleButtonState();
     });
 });
@@ -90,6 +92,7 @@ const cardAddPopup = new PopupWithForm('.popup_type_add', items => {
         console.log(err)
     }).finally(() => {
         cardAddPopup.showSavingText(false);
+        cardAddPopup.close();
         validationAdd.toggleButtonState();
     });
 });
@@ -97,14 +100,12 @@ const cardAddPopup = new PopupWithForm('.popup_type_add', items => {
 function handleUserInfo(data) {
     userInfo.setUserInfo(data);
     userInfo.setUserAvatar(data.avatar);
+    userInfo.id = data._id;
 }
 
 function createCard(item) {
     const newCard = new Card(item, '#element-template', lightbox.open, (confirmTrash) => {
-        buttonTrash.textContent = 'Да'; /* Если сначала добавить карточку, а затем её удалить - текст кнопки наследуется
-                                           из публичного метода showSavingText класса PopupWithForm (Сохранить, вместо Да)
-                                           Лёгкий фикс без возни с переносом и расширением метода. */
-
+        buttonTrash.textContent = 'Да';
         confirm.trashAfterSubmit(() => {
             api.trashCard(item._id)
                 .then(res => {
@@ -118,6 +119,7 @@ function createCard(item) {
         })
         confirm.open(confirmTrash);
     }, (item, isLiked) => {
+        console.log(item)
         if (isLiked) {
             api.removeLike(item.data._id)
                 .then((res) => newCard.likeSubtraction(res))
@@ -131,7 +133,7 @@ function createCard(item) {
                     console.log(err)
                 });
         }
-    }, '15c63f3000d63ae57ad3fb5f');  // после 12 часов работы над практикой, решение не кажется таким уж безумным =)
+    }, userInfo.id);
 
     return newCard;
 }
