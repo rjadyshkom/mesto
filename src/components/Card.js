@@ -11,7 +11,6 @@ export default class Card {
         this._handleCardTrash = handleCardTrash;
         this.handleCardLike = handleCardLike;
         this._myId = myId;
-        console.log(this._myId)
     };
 
     _getTemplate() {
